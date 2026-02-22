@@ -1,1 +1,795 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Diamond Casino & Resort – Bewerbung | Jeff Jeremain</title>
+  <meta name="description" content="Schriftliche Bewerbung – Diamond Casino & Resort – Security" />
 
+  <style>
+    :root{
+      /* Dunkler Sunset/Purple Casino Style (durchgehend) */
+      --bg0:#0c0210;     /* fast schwarz-violett */
+      --bg1:#17051f;     /* deep purple */
+      --bg2:#2a0a35;     /* purple */
+      --bg3:#4a0f49;     /* magenta purple */
+      --pink:#ff66c4;    /* neon pink */
+      --rose:#ff7b8f;    /* sunset rose */
+      --peach:#ffc0a9;   /* peach glow */
+      --gold:#ffd57a;
+
+      --ink: rgba(255,255,255,.93);
+      --muted: rgba(255,255,255,.72);
+
+      /* KEIN Weiß-Glas mehr */
+      --panel: rgba(10, 2, 16, .78);      /* dunkler Panel */
+      --panel2: rgba(16, 4, 24, .72);
+      --row: rgba(18, 5, 26, .72);
+
+      --stroke: rgba(255,255,255,.10);
+      --stroke2: rgba(255,255,255,.07);
+
+      --shadow: 0 20px 70px rgba(0,0,0,.60);
+      --shadow2: 0 14px 45px rgba(0,0,0,.45);
+
+      --radius: 22px;
+      --radius2: 16px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--ink);
+      overflow-x:hidden;
+
+      background:
+        radial-gradient(1200px 650px at 50% 0%, rgba(255, 123, 143, .22), transparent 60%),
+        radial-gradient(900px 600px at 10% 25%, rgba(255, 102, 196, .16), transparent 55%),
+        radial-gradient(900px 650px at 90% 30%, rgba(140, 64, 200, .16), transparent 55%),
+        radial-gradient(1000px 700px at 55% 95%, rgba(255, 192, 169, .12), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 25%, var(--bg2) 55%, var(--bg0));
+    }
+
+    /* Dezente Casino-Deko: Chips + Slot-Reels (ohne weißes Auswaschen) */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.22;
+      mix-blend-mode: screen;
+
+      background-image:
+        /* Slot-Reels (sehr dezent) */
+        repeating-linear-gradient(90deg,
+          rgba(255,255,255,0) 0px,
+          rgba(255,255,255,0) 26px,
+          rgba(255, 102, 196, .06) 26px,
+          rgba(255, 102, 196, .06) 28px
+        ),
+        /* Chip-Ringe */
+        radial-gradient(circle at 12% 20%,
+          rgba(255, 123, 143, .0) 0 14px,
+          rgba(255, 123, 143, .10) 14px 15px,
+          rgba(255, 123, 143, .0) 16px 40px
+        ),
+        radial-gradient(circle at 86% 22%,
+          rgba(255, 213, 122, .0) 0 16px,
+          rgba(255, 213, 122, .09) 16px 17px,
+          rgba(255, 213, 122, .0) 18px 44px
+        ),
+        radial-gradient(circle at 22% 80%,
+          rgba(255, 192, 169, .0) 0 15px,
+          rgba(255, 192, 169, .08) 15px 16px,
+          rgba(255, 192, 169, .0) 17px 42px
+        );
+      background-size: 340px 340px, auto, auto, auto;
+      filter: blur(.15px);
+    }
+
+    /* Sparkles (wie Feuerwerk, aber dunkel + elegant) */
+    .sparkles{ position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+    .spark{
+      position:absolute;
+      width:7px; height:7px;
+      border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,0) 70%);
+      opacity:0;
+      animation: pop 8.2s ease-in-out infinite;
+      filter: drop-shadow(0 10px 24px rgba(0,0,0,.45));
+    }
+    @keyframes pop{
+      0%{ transform: translateY(22vh) scale(.55); opacity:0; }
+      12%{ opacity:.42; }
+      40%{ opacity:.18; }
+      68%{ opacity:.36; transform: translateY(-10vh) scale(1.12); }
+      100%{ opacity:0; transform: translateY(-26vh) scale(.75); }
+    }
+
+    .wrap{
+      width:min(1120px, 92vw);
+      margin: 42px auto 90px;
+      position:relative;
+    }
+
+    /* Topbar */
+    .top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
+    .brand{ display:flex; align-items:center; gap:12px; }
+    .logo{
+      width:54px; height:54px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.85), rgba(255,255,255,0) 55%),
+        linear-gradient(135deg, rgba(255, 102, 196,.40), rgba(255, 123, 143,.28), rgba(140, 64, 200,.26));
+      box-shadow:
+        0 18px 55px rgba(255,102,196,.14),
+        0 20px 65px rgba(255,123,143,.10);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-70%;
+      background: conic-gradient(from 220deg, rgba(255,255,255,0), rgba(255,255,255,.42), rgba(255,255,255,0));
+      opacity:.35;
+      animation: spin 9s linear infinite;
+    }
+    @keyframes spin{ to{ transform: rotate(360deg);} }
+
+    .brand h1{
+      margin:0;
+      font-size:16px;
+      letter-spacing:.65px;
+      text-transform: uppercase;
+      line-height:1.05;
+    }
+    .brand p{
+      margin:4px 0 0;
+      font-size:12.5px;
+      color: var(--muted);
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(0,0,0,.30);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow2);
+      font-size:13px;
+      color: rgba(255,255,255,.86);
+      white-space:nowrap;
+    }
+    .pill .dot{
+      width:10px; height:10px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,0) 55%), var(--pink);
+      box-shadow: 0 0 20px rgba(255,102,196,.35);
+    }
+
+    /* Hero */
+    .hero{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(12,2,16,.78), rgba(12,2,16,.62));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    .banner{
+      height: 170px;
+      background:
+        radial-gradient(900px 220px at 50% 10%, rgba(255,192,169,.20), transparent 60%),
+        linear-gradient(90deg, rgba(12,2,16,.55), rgba(74,15,73,.20), rgba(255,123,143,.12)),
+        url("casino-banner.png");
+      background-size: cover;
+      background-position:center;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      position:relative;
+    }
+    .banner::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(circle at 18% 65%, rgba(255,255,255,.14), transparent 50%),
+        radial-gradient(circle at 82% 25%, rgba(255,255,255,.10), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55));
+      opacity:.9;
+      mix-blend-mode: overlay;
+    }
+
+    .heroInner{
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      align-items:start;
+    }
+    @media (max-width: 920px){
+      .heroInner{ grid-template-columns: 1fr; }
+      .banner{ height: 150px; }
+    }
+
+    .title{
+      margin:0;
+      font-size:30px;
+      letter-spacing:.7px;
+      text-transform: uppercase;
+      line-height:1.05;
+    }
+    .subtitle{
+      margin:10px 0 0;
+      color: var(--muted);
+      font-size:14px;
+      line-height:1.65;
+      max-width: 74ch;
+    }
+
+    /* Info chips – dunkle pills */
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(0,0,0,.28);
+      border:1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.88);
+      font-size:13px;
+      box-shadow: 0 12px 34px rgba(0,0,0,.28);
+    }
+    .chip b{ font-weight:900; color: rgba(255,255,255,.95); }
+    .ic{
+      width:22px; height:22px;
+      border-radius: 10px;
+      display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), rgba(255,255,255,0) 60%),
+        linear-gradient(135deg, rgba(255,102,196,.18), rgba(255,123,143,.14), rgba(140,64,200,.14));
+      box-shadow: 0 12px 34px rgba(0,0,0,.30);
+    }
+
+    /* Cards / Panels */
+    .card{
+      background: linear-gradient(180deg, var(--panel), var(--panel2));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      padding:14px;
+      box-shadow: var(--shadow2);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-60%;
+      background: conic-gradient(from 210deg, rgba(255,255,255,0), rgba(255,255,255,.14), rgba(255,255,255,0));
+      opacity:.18;
+      animation: spin 12s linear infinite;
+    }
+    .card > *{ position:relative; }
+
+    .card h3{
+      margin:0 0 10px;
+      font-size:13px;
+      letter-spacing:.85px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.92);
+    }
+
+    .kv{ display:grid; gap:10px; }
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.08);
+      font-size:13px;
+    }
+    .row span{ color: rgba(255,255,255,.70); }
+    .row b{ color: rgba(255,255,255,.95); font-weight:900; }
+
+    /* Buttons */
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      padding:12px 14px;
+      border-radius:14px;
+      font-weight: 950;
+      letter-spacing:.2px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .15s ease, filter .15s ease;
+      user-select:none;
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+
+    /* Primary = pink/gold casino */
+    .btn.primary{
+      color: rgba(14,3,18,.95);
+      background: linear-gradient(135deg, var(--gold), rgba(255,102,196,.92));
+    }
+    /* Secondary = dark neon outline */
+    .btn.secondary{
+      color: rgba(255,255,255,.92);
+      background: rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .btn.small{
+      padding:10px 12px;
+      border-radius:12px;
+      font-weight:900;
+    }
+
+    /* Content grid */
+    .grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    @media (max-width: 920px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .text{
+      margin:0;
+      color: rgba(255,255,255,.78);
+      line-height:1.65;
+      font-size:14px;
+    }
+
+    .list{
+      margin:10px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .list li{
+      padding:12px;
+      border-radius: 16px;
+      background: rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.08);
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      font-size:13.5px;
+      color: rgba(255,255,255,.84);
+    }
+    .tick{
+      width:22px; height:22px;
+      border-radius: 10px;
+      background: rgba(255,102,196,.14);
+      border:1px solid rgba(255,102,196,.18);
+      box-shadow: 0 0 18px rgba(255,102,196,.16);
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      margin-top: 1px;
+      font-weight:950;
+    }
+
+    footer{
+      margin-top:16px;
+      text-align:center;
+      color: rgba(255,255,255,.55);
+      font-size:12px;
+      padding: 10px 0;
+    }
+
+    /* Modal */
+    dialog{
+      border:none;
+      border-radius: 18px;
+      padding:0;
+      width:min(980px, 94vw);
+      background: rgba(10,2,16,.92);
+      color: var(--ink);
+      box-shadow: 0 30px 95px rgba(0,0,0,.72);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+    }
+    dialog::backdrop{
+      background: rgba(0,0,0,.62);
+      backdrop-filter: blur(6px);
+    }
+    .modalHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+    }
+    .modalHead b{
+      text-transform: uppercase;
+      letter-spacing: .85px;
+      font-size: 13px;
+      color: rgba(255,255,255,.92);
+    }
+    .closeBtn{
+      appearance:none;
+      border:none;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.92);
+      padding: 10px 12px;
+      border-radius: 12px;
+      cursor:pointer;
+      font-weight: 950;
+    }
+    .modalBody{ padding: 14px 16px 16px; }
+    .hint{
+      margin:0 0 10px;
+      color: rgba(255,255,255,.70);
+      font-size: 13px;
+      line-height:1.5;
+    }
+    .docFrame{
+      border-radius: 16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.30);
+      max-height: 72vh;
+      overflow:auto;
+    }
+    .docFrame img{
+      display:block;
+      width: 100%;
+      height: auto;
+    }
+
+    .copyBox{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      background: rgba(0,0,0,.28);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size: 12.5px;
+      color: rgba(255,255,255,.90);
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sparkles" id="sparkles" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <div class="top">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Diamond Casino &amp; Resort</h1>
+          <p>Bewerbung – Security</p>
+        </div>
+      </div>
+
+      <div class="pill" title="Leitwerte">
+        <span class="dot" aria-hidden="true"></span>
+        Loyalität · Diskretion · Respekt
+      </div>
+    </div>
+
+    <section class="hero" aria-label="Bewerbung">
+      <div class="banner" aria-hidden="true"></div>
+
+      <div class="heroInner">
+        <div>
+          <h2 class="title">Schriftliche Bewerbung als Security</h2>
+          <p class="subtitle">
+            Sehr geehrtes Team des Diamond Casino &amp; Resort,<br/>
+            hiermit bewerbe ich mich um die Stelle als <b>Security</b>. Mein Fokus liegt auf ruhiger Präsenz,
+            Deeskalation und einem professionellen Umgang mit Gästen und Mitarbeitenden – auch bei hohem Andrang.
+          </p>
+
+          <div class="chips" aria-label="Kurzinfos">
+            <div class="chip"><span class="ic">♦</span> <b>Name:</b> Jeff Jeremain</div>
+            <div class="chip"><span class="ic">🆔</span> <b>Alter (IC):</b> 36 Jahre</div>
+            <div class="chip"><span class="ic">🌐</span> <b>Alter (OOC):</b> 19 Jahre</div>
+            <div class="chip"><span class="ic">☎</span> <b>Handynummer:</b> 6029103965</div>
+          </div>
+        </div>
+
+        <aside class="card">
+          <h3>Dokumente &amp; Ticket</h3>
+
+          <div class="kv">
+            <div class="row"><span>Position</span><b>Security</b></div>
+            <div class="row"><span>Auftreten</span><b>Respektvoll &amp; Kontrolliert</b></div>
+            <div class="row"><span>Diskretion</span><b>Selbstverständlich</b></div>
+          </div>
+
+          <div class="actions">
+            <button class="btn primary" id="btnPerso" type="button">🪪 Personalausweis</button>
+            <button class="btn primary" id="btnGutachten" type="button">🧠 Psych. Gutachten</button>
+            <button class="btn primary" id="btnWaffe" type="button">🔫 Waffenschein</button>
+
+            <button class="btn secondary" id="btnCopy" type="button">🧾 Ticket-Text kopieren</button>
+            <button class="btn secondary" id="btnPreview" type="button">👁 Ticket-Vorschau</button>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Inhalte">
+      <article class="card">
+        <h3>Warum ich im Casino arbeiten möchte</h3>
+        <p class="text">
+          Das Casino ist ein Ort mit hoher Frequenz und klaren Standards. Ich möchte dazu beitragen,
+          dass Gäste eine sichere, hochwertige Atmosphäre erleben – durch Präsenz, frühes Erkennen von Risiken
+          und konsequentes, aber verhältnismäßiges Handeln.
+        </p>
+        <ul class="list">
+          <li><span class="tick">✓</span> Deeskalation statt Eskalation – Ruhe bewahren &amp; sauber kommunizieren</li>
+          <li><span class="tick">✓</span> Prävention: Situationen lesen, bevor sie kritisch werden</li>
+          <li><span class="tick">✓</span> Diskretion: keine unnötige Aufmerksamkeit, klare Abläufe intern</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Stärken &amp; Vorgehensweise</h3>
+        <ul class="list">
+          <li><span class="tick">✓</span> Stressresistent, fokussiert bei Event-/Peak-Zeiten</li>
+          <li><span class="tick">✓</span> Kontrolliertes Einschreiten, Verhältnismäßigkeit im Vordergrund</li>
+          <li><span class="tick">✓</span> Teamarbeit &amp; Funkdisziplin, saubere Übergaben</li>
+          <li><span class="tick">✓</span> Situationsbewusstsein: Ein-/Ausgänge, Engstellen, Crowd-Flow</li>
+        </ul>
+        <p class="text" style="margin-top:12px;">
+          Priorität: <b>Gäste schützen</b>, <b>Personal entlasten</b>, <b>Eigentum sichern</b> – professionell und unauffällig.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>Verfügbarkeit / Online-Zeiten</h3>
+        <p class="text">
+          Ich bin flexibel einsetzbar und kann nach Absprache Schichten übernehmen – besonders bei hohem Gästeaufkommen
+          oder besonderen Veranstaltungen.
+        </p>
+        <ul class="list">
+          <li><span class="tick">✓</span> Kurzfristig einsatzbereit nach Rücksprache</li>
+          <li><span class="tick">✓</span> Fokus auf Events/Peak-Zeiten</li>
+          <li><span class="tick">✓</span> Briefings/Protokolle für saubere Übergaben</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>Kontakt &amp; Abschluss</h3>
+        <p class="text">
+          Ich freue mich über eine Rückmeldung und ein kurzes Gespräch/Probeschicht, um mich im Team vorzustellen.
+          Vielen Dank für Ihre Zeit.
+        </p>
+        <div class="kv" style="margin-top:12px;">
+          <div class="row"><span>Name</span><b>Jeff Jeremain</b></div>
+          <div class="row"><span>Handynummer</span><b>6029103965</b></div>
+          <div class="row"><span>Bewerbung</span><b>Diamond Casino &amp; Resort – Security</b></div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      ♦ Diamond Casino &amp; Resort – Bewerbung (GitHub Pages) · Jeff Jeremain
+    </footer>
+  </main>
+
+  <!-- Dokument-Modal -->
+  <dialog id="docModal">
+    <div class="modalHead">
+      <b id="docTitle">Dokument</b>
+      <button class="closeBtn" id="docClose" type="button">Schließen</button>
+    </div>
+    <div class="modalBody">
+      <p class="hint" id="docHint">Dokumentansicht (Scroll im Fenster, Zoom im Browser möglich).</p>
+      <div class="docFrame">
+        <img id="docImg" alt="Dokument" />
+      </div>
+      <div class="actions" style="margin-top:12px;">
+        <button class="btn secondary small" id="btnOpenNewTab" type="button">↗ In neuem Tab öffnen</button>
+        <a class="btn secondary small" id="btnDownload" href="#" download>⬇ Download</a>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Ticket-Modal -->
+  <dialog id="ticketModal">
+    <div class="modalHead">
+      <b>Ticket-Vorschau</b>
+      <button class="closeBtn" id="btnCloseTicket" type="button">Schließen</button>
+    </div>
+    <div class="modalBody">
+      <p class="hint">
+        Diesen Text kannst du 1:1 in dein Ticket kopieren (ggf. Online-Zeiten ergänzen).
+      </p>
+      <div class="copyBox">
+        <code id="ticketText"></code>
+        <button class="btn secondary small" id="btnCopy2" type="button">Kopieren</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    // Dateinamen im Repo (anpassen, falls nötig)
+    const FILES = {
+      perso: "perso.png",
+      gutachten: "gutachten.png",
+      waffenschein: "waffenschein.png",
+    };
+
+    // Sparkles
+    const host = document.getElementById("sparkles");
+    const rand = (min,max)=> Math.random()*(max-min)+min;
+    for(let i=0;i<22;i++){
+      const s = document.createElement("div");
+      s.className = "spark";
+      s.style.left = rand(0,100) + "vw";
+      s.style.top = rand(62,112) + "vh";
+      s.style.animationDuration = rand(7.0, 11.0) + "s";
+      s.style.animationDelay = rand(0, 7.5) + "s";
+      const size = rand(4, 9);
+      s.style.width = size + "px";
+      s.style.height = size + "px";
+      host.appendChild(s);
+    }
+
+    // Ticket-Text
+    const ticket =
+`💎 Diamond Casino & Resort – Bewerbung (Security)
+
+Name / Ingame-Name: Jeff Jeremain
+Alter (IC): 36 Jahre
+Alter (OOC): 19 Jahre
+Handynummer: 6029103965
+Position: Security
+
+Warum möchte ich bei euch arbeiten?
+- Ruhige Präsenz, professionelles Auftreten, saubere Kommunikation
+- Prävention & Deeskalation, ohne die Casino-Atmosphäre zu stören
+- Diskretion und Loyalität gegenüber dem Haus und dem Team
+
+Stärken & Vorgehensweise:
+- Stressresistent, klar in der Situation, verhältnismäßiges Einschreiten
+- Teamarbeit & Funkdisziplin, saubere Übergaben
+- Fokus: Schutz der Gäste, Entlastung der Mitarbeitenden, Sicherung des Eigentums
+
+Online-Zeiten / Verfügbarkeit:
+- Flexibel nach Absprache (Event-/Peak-Zeiten bevorzugt)
+
+Dokumente:
+- Personalausweis (Website Button)
+- Medizinisch-Psychologisches Gutachten (Website Button)
+- Waffenschein (Website Button)`;
+
+    // Copy helper
+    async function copyToClipboard(text){
+      try{
+        await navigator.clipboard.writeText(text);
+        return true;
+      }catch(e){
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand("copy");
+        document.body.removeChild(ta);
+        return ok;
+      }
+    }
+
+    // Dokument-Modal
+    const docModal = document.getElementById("docModal");
+    const docImg = document.getElementById("docImg");
+    const docTitle = document.getElementById("docTitle");
+    const docHint = document.getElementById("docHint");
+    const btnOpenNewTab = document.getElementById("btnOpenNewTab");
+    const btnDownload = document.getElementById("btnDownload");
+
+    let currentDocFile = null;
+
+    function openDoc(title, file){
+      currentDocFile = file;
+      docTitle.textContent = title;
+      docHint.textContent = "Datei: " + file + " (Scroll im Fenster, Zoom im Browser möglich)";
+      docImg.src = file;
+      docImg.alt = title;
+
+      btnDownload.href = file;
+      btnDownload.setAttribute("download", file);
+
+      if (typeof docModal.showModal === "function") docModal.showModal();
+      else window.open(file, "_blank", "noopener,noreferrer");
+    }
+
+    document.getElementById("docClose").addEventListener("click", () => docModal.close());
+    btnOpenNewTab.addEventListener("click", () => {
+      if(currentDocFile) window.open(currentDocFile, "_blank", "noopener,noreferrer");
+    });
+
+    docModal.addEventListener("click", (e) => {
+      const rect = docModal.getBoundingClientRect();
+      const inside =
+        rect.top <= e.clientY && e.clientY <= rect.bottom &&
+        rect.left <= e.clientX && e.clientX <= rect.right;
+      if(!inside) docModal.close();
+    });
+
+    // Dokument Buttons
+    document.getElementById("btnPerso").addEventListener("click", () => openDoc("Personalausweis", FILES.perso));
+    document.getElementById("btnGutachten").addEventListener("click", () => openDoc("Medizinisch-Psychologisches Gutachten", FILES.gutachten));
+    document.getElementById("btnWaffe").addEventListener("click", () => openDoc("Waffenschein", FILES.waffenschein));
+
+    // Ticket modal
+    const ticketModal = document.getElementById("ticketModal");
+    document.getElementById("ticketText").textContent = ticket;
+
+    document.getElementById("btnPreview").addEventListener("click", () => {
+      if(typeof ticketModal.showModal === "function") ticketModal.showModal();
+      else alert(ticket);
+    });
+
+    document.getElementById("btnCloseTicket").addEventListener("click", () => ticketModal.close());
+    ticketModal.addEventListener("click", (e) => {
+      const rect = ticketModal.getBoundingClientRect();
+      const inside =
+        rect.top <= e.clientY && e.clientY <= rect.bottom &&
+        rect.left <= e.clientX && e.clientY <= rect.bottom;
+      // (kleiner Schutz, aber reicht)
+      if(!inside) ticketModal.close();
+    });
+
+    // Copy Buttons
+    document.getElementById("btnCopy").addEventListener("click", async (e) => {
+      const btn = e.currentTarget;
+      const ok = await copyToClipboard(ticket);
+      btn.textContent = ok ? "✅ Kopiert!" : "⚠️ Konnte nicht kopieren";
+      setTimeout(()=> btn.textContent="🧾 Ticket-Text kopieren", 1300);
+    });
+
+    document.getElementById("btnCopy2").addEventListener("click", async (e) => {
+      const btn = e.currentTarget;
+      const ok = await copyToClipboard(ticket);
+      btn.textContent = ok ? "✅ Kopiert!" : "⚠️ Fehler";
+      setTimeout(()=> btn.textContent="Kopieren", 1300);
+    });
+  </script>
+</body>
+</html>
