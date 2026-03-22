@@ -1160,5 +1160,162 @@
       }
     });
   </script>
+  <script>
+    // Extended premium enhancements
+    (function(){
+      const heroBg = document.getElementById('heroBg');
+      if(heroBg){
+        heroBg.style.background = `
+          linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.78)),
+          radial-gradient(circle at 20% 20%, rgba(255,78,199,.14), transparent 24%),
+          radial-gradient(circle at 82% 20%, rgba(117,233,255,.11), transparent 22%),
+          radial-gradient(circle at 50% -10%, rgba(239,195,110,.22), transparent 32%),
+          url('gta-intro.mp4') center/cover no-repeat,
+          url('casino-banner.png') center/cover no-repeat`;
+      }
+
+      const heroSection = document.getElementById('hero');
+      if(heroSection){
+        const video = document.createElement('video');
+        video.src = 'gta-intro.mp4';
+        video.autoplay = true;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', '');
+        video.setAttribute('muted', '');
+        Object.assign(video.style, {
+          position:'absolute', inset:'0', width:'100%', height:'100%', objectFit:'cover',
+          opacity:'0.28', zIndex:'0', pointerEvents:'none', mixBlendMode:'screen'
+        });
+        heroSection.insertBefore(video, heroSection.firstChild);
+      }
+
+      const wrap = document.querySelector('.wrap');
+      if(wrap && !document.getElementById('terminalSection')){
+        const terminal = document.createElement('section');
+        terminal.className = 'sectionGrid';
+        terminal.innerHTML = `
+          <article class="panel span-12 tilt-card" id="terminalSection">
+            <h3>Casino Terminal Bewerbung</h3>
+            <p>Ein interaktives Formular im Casino-Terminal-Stil für deine Premium-Bewerbung.</p>
+            <div style="margin-top:16px; display:grid; grid-template-columns:1.1fr .9fr; gap:18px;">
+              <div style="padding:18px; border-radius:22px; background:linear-gradient(180deg, rgba(7,10,18,.96), rgba(7,10,18,.84)); border:1px solid rgba(98,241,196,.18); box-shadow:0 0 0 1px rgba(98,241,196,.06), 0 20px 40px rgba(0,0,0,.34); position:relative; overflow:hidden;">
+                <div style="position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(180deg, rgba(98,241,196,.04) 0 2px, transparent 2px 4px); opacity:.18"></div>
+                <div style="position:relative; z-index:1; display:grid; gap:12px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 12px; border-radius:14px; background:rgba(98,241,196,.06); border:1px solid rgba(98,241,196,.14); color:#d8fff2; text-transform:uppercase; letter-spacing:.14em; font-size:12px;">Diamond Access Terminal <span style="color:#9bffd9">Online</span></div>
+                  <label style="display:grid; gap:6px; font-size:13px; color:rgba(255,255,255,.8)">Name
+                    <input id="termName" value="Jeff Adil Cüneyt Rince" style="width:100%; padding:14px 14px; border-radius:14px; border:1px solid rgba(98,241,196,.16); background:rgba(0,0,0,.26); color:#dffdf3; outline:none; font:inherit;" />
+                  </label>
+                  <label style="display:grid; gap:6px; font-size:13px; color:rgba(255,255,255,.8)">Position
+                    <input id="termPosition" value="Security" style="width:100%; padding:14px 14px; border-radius:14px; border:1px solid rgba(98,241,196,.16); background:rgba(0,0,0,.26); color:#dffdf3; outline:none; font:inherit;" />
+                  </label>
+                  <label style="display:grid; gap:6px; font-size:13px; color:rgba(255,255,255,.8)">Stärken
+                    <textarea id="termStrength" rows="5" style="width:100%; padding:14px 14px; border-radius:14px; border:1px solid rgba(98,241,196,.16); background:rgba(0,0,0,.26); color:#dffdf3; outline:none; font:inherit; resize:vertical;">Diskretion, Deeskalation, Präsenz, Funkdisziplin, Stressresistenz</textarea>
+                  </label>
+                  <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                    <button class="btn primary small" type="button" id="terminalGenerate">Terminal Vorschau</button>
+                    <button class="btn secondary small" type="button" id="terminalClear">Reset</button>
+                  </div>
+                </div>
+              </div>
+              <div style="padding:18px; border-radius:22px; background:linear-gradient(180deg, rgba(14,16,27,.94), rgba(8,10,16,.98)); border:1px solid rgba(255,255,255,.08); box-shadow:0 20px 40px rgba(0,0,0,.34);">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px;">
+                  <div style="color:#ffe4a3; text-transform:uppercase; letter-spacing:.14em; font-size:12px;">Live Bewerbungsausgabe</div>
+                  <div style="padding:6px 10px; border-radius:999px; background:rgba(239,195,110,.08); border:1px solid rgba(239,195,110,.16); color:#ffe7b2; font-size:11px; text-transform:uppercase;">High Roller Mode</div>
+                </div>
+                <pre id="terminalPreview" style="margin:0; white-space:pre-wrap; min-height:300px; border-radius:16px; padding:16px; background:rgba(0,0,0,.28); border:1px solid rgba(255,255,255,.06); color:#e9ffd8; font:13px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; box-shadow:inset 0 0 0 1px rgba(98,241,196,.04);"></pre>
+              </div>
+            </div>
+          </article>`;
+        wrap.insertBefore(terminal, wrap.querySelector('footer'));
+
+        const termName = terminal.querySelector('#termName');
+        const termPosition = terminal.querySelector('#termPosition');
+        const termStrength = terminal.querySelector('#termStrength');
+        const terminalPreview = terminal.querySelector('#terminalPreview');
+        const renderTerminal = () => {
+          terminalPreview.textContent =
+`> DIAMOND CASINO ACCESS TERMINAL
+> APPLICANT PROFILE LOADED
+
+NAME: ${termName.value || '-'}
+POSITION: ${termPosition.value || '-'}
+ROLE STATUS: VERIFIED CANDIDATE
+
+PRIMARY STRENGTHS:
+${(termStrength.value || '-').split(',').map(s => `- ${s.trim()}`).join('
+')}
+
+ASSESSMENT:
+Dieser Kandidat eignet sich für kontrollierte Security-Aufgaben
+mit Fokus auf Diskretion, Präsenz und professionelles Handeln.
+
+TERMINAL STATUS: READY FOR REVIEW`;
+        };
+        terminal.querySelector('#terminalGenerate').addEventListener('click', renderTerminal);
+        terminal.querySelector('#terminalClear').addEventListener('click', () => {
+          termName.value = '';
+          termPosition.value = '';
+          termStrength.value = '';
+          renderTerminal();
+        });
+        renderTerminal();
+      }
+
+      // richer soundscape
+      const soundBtn = document.getElementById('soundBtn');
+      if(soundBtn && !soundBtn.dataset.enhanced){
+        soundBtn.dataset.enhanced = '1';
+        let fxCtx = null;
+        let fxNodes = [];
+        let fxPlaying = false;
+        const stopFx = () => {
+          fxNodes.forEach(n => { try{n.stop && n.stop();}catch{} try{n.disconnect && n.disconnect();}catch{} });
+          fxNodes = [];
+          fxPlaying = false;
+          soundBtn.classList.remove('active');
+          soundBtn.textContent = '🔇 Musik';
+        };
+        const startFx = async () => {
+          if(!fxCtx) fxCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if(fxCtx.state === 'suspended') await fxCtx.resume();
+          const master = fxCtx.createGain();
+          master.gain.value = 0.04;
+          master.connect(fxCtx.destination);
+          const padFreqs = [110, 138.59, 174.61, 220];
+          padFreqs.forEach((freq, i) => {
+            const osc = fxCtx.createOscillator();
+            const gain = fxCtx.createGain();
+            osc.type = i % 2 ? 'triangle' : 'sine';
+            osc.frequency.value = freq;
+            gain.gain.value = 0.001;
+            osc.connect(gain);
+            gain.connect(master);
+            osc.start();
+            gain.gain.setTargetAtTime(0.018 / (i + 1), fxCtx.currentTime, 1.6 + i * .3);
+            fxNodes.push(osc, gain);
+          });
+          const shimmer = fxCtx.createOscillator();
+          const shimmerGain = fxCtx.createGain();
+          shimmer.type = 'sawtooth';
+          shimmer.frequency.value = 523.25;
+          shimmerGain.gain.value = 0.0001;
+          shimmer.connect(shimmerGain);
+          shimmerGain.connect(master);
+          shimmer.start();
+          shimmerGain.gain.setTargetAtTime(0.003, fxCtx.currentTime, 2.4);
+          fxNodes.push(shimmer, shimmerGain);
+          fxPlaying = true;
+          soundBtn.classList.add('active');
+          soundBtn.textContent = '🔊 Musik';
+        };
+        soundBtn.addEventListener('click', async (e) => {
+          e.stopImmediatePropagation();
+          if(fxPlaying) stopFx(); else await startFx();
+        }, true);
+      }
+    })();
+  </script>
 </body>
 </html>
