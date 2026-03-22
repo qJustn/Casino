@@ -1,1491 +1,489 @@
-<!doctype html>
-<html lang="de">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Diamond Casino & Resort – Premium Bewerbung | Jeff Adil Cüneyt Rince</title>
-  <meta name="description" content="Premium GTA 5 Diamond Casino inspirierte Bewerbungsseite mit Animationen, Minigames und Luxuslook." />
-  <style>
-    :root{
-      --lux-gold:#f4c86a;
-      --lux-gold-soft:#ffe4a3;
-      --lux-black:#050507;
-      --chip-red:#c11f39;
-      --chip-blue:#295bff;
-      --chip-green:#139a6b;
-    }
-
-    *{cursor:none !important;}
-
-    .cursorDot,
-    .cursorRing{
-      position:fixed;
-      left:0;
-      top:0;
-      pointer-events:none;
-      z-index:5000;
-      border-radius:999px;
-      transform:translate(-50%, -50%);
-      mix-blend-mode:screen;
-    }
-    .cursorDot{
-      width:10px;
-      height:10px;
-      background:radial-gradient(circle, #fff7d3, var(--lux-gold));
-      box-shadow:0 0 18px rgba(244,200,106,.8);
-    }
-    .cursorRing{
-      width:34px;
-      height:34px;
-      border:1px solid rgba(244,200,106,.65);
-      box-shadow:0 0 24px rgba(244,200,106,.22), inset 0 0 14px rgba(244,200,106,.08);
-      transition:width .18s ease,height .18s ease,border-color .18s ease,box-shadow .18s ease;
-    }
-    .cursorRing.hover{
-      width:54px;
-      height:54px;
-      border-color:rgba(255,228,163,.95);
-      box-shadow:0 0 34px rgba(244,200,106,.35), inset 0 0 20px rgba(244,200,106,.12);
-    }
-
-    .chipFloatLayer{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:5;
-      overflow:hidden;
-    }
-    .chipFloat{
-      position:absolute;
-      width:54px;
-      height:54px;
-      border-radius:50%;
-      border:4px dashed rgba(255,255,255,.25);
-      box-shadow:0 12px 28px rgba(0,0,0,.28), 0 0 22px rgba(244,200,106,.12);
-      opacity:.26;
-      animation:chipHover linear infinite;
-    }
-    .chipFloat::before,
-    .chipFloat::after{
-      content:'';
-      position:absolute;
-      inset:7px;
-      border-radius:50%;
-      border:2px solid rgba(255,255,255,.18);
-    }
-    .chipFloat::after{
-      inset:18px;
-      border-width:3px;
-      border-color:rgba(255,255,255,.28);
-    }
-    .chipFloat.red{background:radial-gradient(circle at 30% 30%, #ff94aa, var(--chip-red));}
-    .chipFloat.blue{background:radial-gradient(circle at 30% 30%, #9cb8ff, var(--chip-blue));}
-    .chipFloat.green{background:radial-gradient(circle at 30% 30%, #7bf7cb, var(--chip-green));}
-    .chipFloat.gold{background:radial-gradient(circle at 30% 30%, #fff1c6, #b8861d);}
-    @keyframes chipHover{
-      0%{transform:translateY(10vh) rotate(0deg) scale(.8);opacity:0}
-      10%{opacity:.22}
-      50%{opacity:.3}
-      100%{transform:translateY(-115vh) rotate(540deg) scale(1.08);opacity:0}
-    }
-
-    .gold-black-mode .hero,
-    .gold-black-mode .panel,
-    .gold-black-mode .profileCard,
-    .gold-black-mode .navbar,
-    .gold-black-mode .loadingBox,
-    .gold-black-mode dialog{
-      box-shadow:0 24px 70px rgba(0,0,0,.55), 0 0 0 1px rgba(244,200,106,.06), 0 0 40px rgba(244,200,106,.06);
-    }
-
-    .preloaderLogoGlow{
-      position:absolute;
-      inset:-22%;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(244,200,106,.18), transparent 58%);
-      animation:pulseLogo 1.8s ease-in-out infinite;
-      pointer-events:none;
-    }
-    @keyframes pulseLogo{
-      0%,100%{transform:scale(.9);opacity:.6}
-      50%{transform:scale(1.12);opacity:1}
-    }
-
-    .luxuryToggle{
-      appearance:none;
-      border:none;
-      cursor:pointer;
-      color:#1b1304;
-      background:linear-gradient(135deg, var(--lux-gold-soft), var(--lux-gold));
-      font-weight:900;
-      padding:12px 14px;
-      border-radius:999px;
-      box-shadow:0 10px 24px rgba(244,200,106,.2);
-    }
-
-    :root{
-      --bg:#05060b;
-      --bg2:#0a0d17;
-      --bg3:#101323;
-      --panel:rgba(13,16,27,.72);
-      --panel-2:rgba(10,12,22,.92);
-      --line:rgba(255,255,255,.09);
-      --line-strong:rgba(255,255,255,.16);
-      --text:#f7f6ff;
-      --muted:rgba(255,255,255,.7);
-      --gold:#efc36e;
-      --gold-2:#ffd998;
-      --pink:#ff4ec7;
-      --purple:#916bff;
-      --cyan:#75e9ff;
-      --emerald:#62f1c4;
-      --danger:#ff6f7d;
-      --shadow:0 18px 60px rgba(0,0,0,.42);
-      --shadow-xl:0 35px 110px rgba(0,0,0,.58);
-      --radius:24px;
-      --radius-lg:32px;
-      --nav-h:80px;
-    }
-
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    html,body{min-height:100%}
-    body{
-      margin:0;
-      color:var(--text);
-      overflow-x:hidden;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:
-        radial-gradient(circle at 12% 15%, rgba(255,78,199,.12), transparent 22%),
-        radial-gradient(circle at 88% 8%, rgba(117,233,255,.1), transparent 22%),
-        radial-gradient(circle at 50% 78%, rgba(239,195,110,.14), transparent 30%),
-        linear-gradient(180deg, var(--bg), var(--bg2) 36%, var(--bg3) 66%, #06070d 100%);
-    }
-
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity:.15;
-      background:
-        repeating-linear-gradient(90deg, transparent 0 59px, rgba(255,255,255,.03) 59px 60px),
-        repeating-linear-gradient(0deg, transparent 0 59px, rgba(255,255,255,.025) 59px 60px);
-      mask-image:radial-gradient(circle at center, #000 38%, transparent 100%);
-      z-index:0;
-    }
-
-    .noise,
-    .lights,
-    .sparkles,
-    .coins,
-    .loading,
-    .intro{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-    }
-
-    .noise{z-index:1; opacity:.05; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.95" numOctaves="2" stitchTiles="stitch"/></filter><rect width="140" height="140" filter="url(%23n)" opacity="1"/></svg>'); mix-blend-mode:soft-light;}
-    .lights{z-index:2; overflow:hidden}
-    .beam{
-      position:absolute;
-      width:34vw; height:140vh; top:-16vh;
-      filter:blur(36px); opacity:.12; transform:rotate(18deg);
-      animation:beamMove 16s ease-in-out infinite alternate;
-      mix-blend-mode:screen;
-    }
-    .beam.b1{left:-6vw;background:linear-gradient(180deg, transparent, rgba(255,78,199,.82), transparent)}
-    .beam.b2{left:26vw;background:linear-gradient(180deg, transparent, rgba(117,233,255,.86), transparent);animation-duration:19s}
-    .beam.b3{right:12vw;background:linear-gradient(180deg, transparent, rgba(239,195,110,.82), transparent);animation-duration:18s}
-    @keyframes beamMove{from{transform:rotate(13deg) translateY(-24px)}to{transform:rotate(25deg) translateY(22px)}}
-
-    .sparkles{z-index:3; overflow:hidden}
-    .spark{
-      position:absolute; border-radius:999px;
-      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.98), rgba(255,255,255,0) 70%);
-      opacity:0; animation:floatUp linear infinite;
-    }
-    @keyframes floatUp{0%{transform:translateY(24vh) scale(.4);opacity:0}12%{opacity:.55}72%{opacity:.18}100%{transform:translateY(-28vh) scale(1.14);opacity:0}}
-
-    .coins{z-index:4; overflow:hidden}
-    .coin{
-      position:absolute; top:-8vh; width:26px; height:26px; border-radius:50%;
-      background:radial-gradient(circle at 32% 28%, #fff6dd 0 18%, #ffd98e 19%, #d79d39 58%, #8a5d17 100%);
-      box-shadow:0 0 24px rgba(239,195,110,.3);
-      opacity:.78; animation:coinFall linear infinite;
-      transform-style:preserve-3d;
-    }
-    .coin::before{content:'♦'; position:absolute; inset:0; display:grid; place-items:center; color:rgba(74,35,0,.9); font-size:12px; font-weight:900}
-    @keyframes coinFall{0%{transform:translateY(-10vh) rotateY(0deg) rotateZ(0deg)}100%{transform:translateY(115vh) rotateY(960deg) rotateZ(560deg)}}
-
-    .loading{
-      z-index:2000;
-      display:grid;
-      place-items:center;
-      background:
-        radial-gradient(circle at center, rgba(239,195,110,.09), transparent 26%),
-        linear-gradient(180deg, rgba(5,6,11,.98), rgba(5,6,11,1));
-      pointer-events:auto;
-      transition:opacity .9s ease, visibility .9s ease;
-    }
-    .loading.hide{opacity:0; visibility:hidden}
-    .loadingBox{
-      width:min(540px, 90vw);
-      padding:30px;
-      border-radius:30px;
-      background:linear-gradient(180deg, rgba(15,18,30,.88), rgba(8,10,18,.96));
-      border:1px solid rgba(255,255,255,.1);
-      box-shadow:var(--shadow-xl);
-      text-align:center;
-      position:relative;
-      overflow:hidden;
-    }
-    .loadingBox::before{
-      content:"";
-      position:absolute; inset:-60%;
-      background:conic-gradient(from 0deg, transparent, rgba(239,195,110,.28), transparent 25%);
-      animation:spin 7s linear infinite;
-    }
-    .loadingInner{position:relative; z-index:1}
-    .loadLogo{
-      width:92px; height:92px; margin:0 auto 16px; border-radius:28px;
-      border:1px solid rgba(255,255,255,.14);
-      display:grid; place-items:center; font-size:38px; font-weight:1000;
-      color:#fff0bc;
-      background:radial-gradient(circle at 28% 25%, rgba(255,255,255,.84), rgba(255,255,255,0) 38%), linear-gradient(135deg, rgba(239,195,110,.44), rgba(255,78,199,.18), rgba(117,233,255,.14));
-      box-shadow:0 0 40px rgba(239,195,110,.22), 0 0 80px rgba(255,78,199,.08);
-    }
-    .loading h1{margin:0 0 8px; font-size:clamp(26px, 5vw, 44px); letter-spacing:.12em; text-transform:uppercase}
-    .loading p{margin:0 0 18px; color:var(--muted); line-height:1.7}
-    .progressWrap{
-      height:14px; border-radius:999px; overflow:hidden;
-      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
-    }
-    .progressBar{
-      height:100%; width:0%; border-radius:999px;
-      background:linear-gradient(90deg, var(--gold), var(--pink), var(--cyan));
-      box-shadow:0 0 24px rgba(239,195,110,.25);
-      transition:width .24s ease;
-    }
-    .progressText{margin-top:12px; color:#fff0c8; font-size:13px; text-transform:uppercase; letter-spacing:.16em}
-
-    .intro{
-      z-index:1900; display:grid; place-items:center; opacity:0; visibility:hidden;
-      transition:opacity .8s ease, visibility .8s ease; pointer-events:none;
-      background:radial-gradient(circle at center, rgba(239,195,110,.07), transparent 36%), linear-gradient(180deg, rgba(4,5,10,.78), rgba(4,5,10,.1));
-    }
-    .intro.show{opacity:1; visibility:visible}
-    .intro.hide{opacity:0; visibility:hidden}
-    .introCard{
-      width:min(840px, 92vw);
-      text-align:center;
-      padding:30px 24px;
-      border-radius:34px;
-      border:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(10,12,20,.7), rgba(10,12,20,.24));
-      backdrop-filter:blur(8px);
-      box-shadow:var(--shadow-xl);
-      transform:translateY(18px) scale(.97);
-      animation:introRise 1.15s ease forwards;
-    }
-    @keyframes introRise{to{transform:translateY(0) scale(1)}}
-    .introTop{display:inline-flex; align-items:center; gap:10px; padding:10px 16px; border-radius:999px; border:1px solid rgba(239,195,110,.18); background:rgba(239,195,110,.08); color:#ffe7ae; font-size:12px; letter-spacing:.18em; text-transform:uppercase}
-    .introCard h2{margin:18px 0 10px; font-size:clamp(36px, 8vw, 88px); line-height:.9; text-transform:uppercase; letter-spacing:.08em; font-weight:1000; text-shadow:0 0 30px rgba(239,195,110,.16), 0 0 60px rgba(255,78,199,.08)}
-    .introCard h2 span{display:block; background:linear-gradient(90deg, #fff2bf, var(--gold), #fff3c6); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .introCard p{margin:0 auto; max-width:66ch; color:var(--muted); line-height:1.8}
-
-    .app{
-      position:relative;
-      z-index:10;
-      opacity:0;
-      transform:translateY(18px);
-      transition:opacity .9s ease, transform .9s ease;
-    }
-    .app.ready{opacity:1; transform:translateY(0)}
-
-    .navbar{
-      position:sticky; top:14px; z-index:300;
-      width:min(1320px, 94vw); margin:14px auto 0;
-      padding:12px 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.11);
-      background:rgba(10,12,20,.6);
-      backdrop-filter:blur(16px) saturate(140%);
-      box-shadow:0 18px 45px rgba(0,0,0,.35);
-      display:flex; align-items:center; justify-content:space-between; gap:14px;
-    }
-    .navbar::before{
-      content:"";
-      position:absolute; inset:-1px; border-radius:inherit; padding:1px;
-      background:linear-gradient(90deg, rgba(239,195,110,.8), rgba(255,78,199,.5), rgba(117,233,255,.6), rgba(239,195,110,.8));
-      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor; mask-composite:exclude;
-      opacity:.95;
-      animation:navGlow 7s linear infinite;
-      pointer-events:none;
-    }
-    @keyframes navGlow{to{filter:hue-rotate(360deg)}}
-
-    .navBrand{display:flex; align-items:center; gap:12px; min-width:0}
-    .navLogo{
-      width:54px; height:54px; border-radius:18px; position:relative; overflow:hidden;
-      background:radial-gradient(circle at 28% 25%, rgba(255,255,255,.84), rgba(255,255,255,0) 40%), linear-gradient(135deg, rgba(239,195,110,.38), rgba(255,78,199,.22), rgba(117,233,255,.16));
-      border:1px solid rgba(255,255,255,.14); box-shadow:0 0 36px rgba(239,195,110,.18);
-      flex:0 0 auto;
-    }
-    .navLogo::before{content:'♦'; position:absolute; inset:0; display:grid; place-items:center; font-weight:1000; font-size:24px; color:#fff3ca}
-    .navLogo::after{content:''; position:absolute; inset:-60%; background:conic-gradient(from 0deg, transparent, rgba(255,255,255,.4), transparent 25%); animation:spin 8s linear infinite}
-    .navBrand h1{margin:0; font-size:14px; letter-spacing:.23em; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-    .navBrand p{margin:4px 0 0; font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-
-    .navLinks{display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center}
-    .navLinks a,
-    .navLinks button,
-    .soundBtn{
-      appearance:none; border:none; text-decoration:none; cursor:pointer;
-      color:var(--text); font-weight:800; font-size:13px; letter-spacing:.06em;
-      padding:12px 14px; border-radius:999px;
-      background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
-      transition:transform .18s ease, border-color .18s ease, background .18s ease;
-      white-space:nowrap;
-    }
-    .navLinks a:hover,
-    .navLinks button:hover,
-    .soundBtn:hover{transform:translateY(-2px); border-color:rgba(239,195,110,.26); background:rgba(255,255,255,.07)}
-    .soundBtn.active{background:rgba(98,241,196,.12); border-color:rgba(98,241,196,.25); color:#d7fff1}
-
-    .wrap{width:min(1320px, 94vw); margin:26px auto 80px; position:relative}
-
-    .hero{
-      position:relative; overflow:hidden;
-      border-radius:38px; min-height:720px;
-      border:1px solid rgba(255,255,255,.10);
-      background:linear-gradient(180deg, rgba(10,11,18,.56), rgba(12,13,22,.92));
-      box-shadow:var(--shadow-xl);
-      transform-style:preserve-3d;
-      will-change:transform;
-    }
-    .heroBg{
-      position:absolute; inset:0;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.16), rgba(0,0,0,.76)),
-        radial-gradient(circle at 20% 20%, rgba(255,78,199,.14), transparent 24%),
-        radial-gradient(circle at 82% 20%, rgba(117,233,255,.11), transparent 22%),
-        radial-gradient(circle at 50% -10%, rgba(239,195,110,.22), transparent 32%),
-        url('casino-banner.png') center/cover no-repeat;
-      opacity:.45; transform:scale(1.05);
-      transition:transform .25s ease;
-    }
-    .heroLines{position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0) 18%, rgba(255,255,255,.02) 60%, rgba(255,255,255,0)); mix-blend-mode:screen}
-    .heroGlow{position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at 20% 40%, rgba(255,78,199,.18), transparent 26%), radial-gradient(circle at 80% 28%, rgba(117,233,255,.14), transparent 24%), radial-gradient(circle at 50% 0%, rgba(239,195,110,.18), transparent 36%)}
-
-    .heroInner{
-      position:relative; z-index:2;
-      display:grid; grid-template-columns:1.22fr .78fr;
-      gap:24px; align-items:center;
-      padding:calc(var(--nav-h) + 34px) 34px 34px;
-      min-height:720px;
-    }
-    .tag{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:10px 16px; border-radius:999px;
-      border:1px solid rgba(239,195,110,.18);
-      background:rgba(239,195,110,.08); color:#ffe7af;
-      font-size:12px; letter-spacing:.18em; text-transform:uppercase;
-      box-shadow:0 10px 30px rgba(0,0,0,.22);
-    }
-    .hero h2{margin:18px 0 14px; font-size:clamp(44px, 8vw, 94px); line-height:.9; text-transform:uppercase; letter-spacing:.05em; font-weight:1000; max-width:12ch; text-shadow:0 0 24px rgba(239,195,110,.14), 0 0 40px rgba(255,78,199,.07)}
-    .hero h2 span{display:block; background:linear-gradient(90deg, #fff5cf, var(--gold), #ffe8a9); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .lead{max-width:66ch; margin:0 0 20px; color:var(--muted); line-height:1.82; font-size:15px}
-    .heroActions{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:24px}
-    .btn{
-      appearance:none; border:none; cursor:pointer; text-decoration:none;
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:14px 18px; border-radius:18px; font-weight:900; font-size:14px; letter-spacing:.04em;
-      transition:transform .18s ease, filter .18s ease, border-color .18s ease, background .18s ease;
-      box-shadow:var(--shadow);
-    }
-    .btn:hover{transform:translateY(-2px); filter:brightness(1.05)}
-    .btn.primary{color:#221604; background:linear-gradient(135deg, #ffefbf, var(--gold), #ffd283); box-shadow:0 18px 38px rgba(239,195,110,.18), 0 0 28px rgba(239,195,110,.12)}
-    .btn.secondary{color:var(--text); background:linear-gradient(135deg, rgba(255,78,199,.18), rgba(145,107,255,.12)); border:1px solid rgba(255,255,255,.10)}
-    .btn.ghost{color:var(--text); background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08)}
-    .btn.small{padding:11px 13px; border-radius:14px; font-size:13px}
-
-    .stats{display:grid; grid-template-columns:repeat(4, 1fr); gap:12px}
-    .stat{
-      padding:16px; border-radius:18px;
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:var(--shadow);
-      transform-style:preserve-3d;
-      transition:transform .22s ease, border-color .22s ease, box-shadow .22s ease;
-    }
-    .stat:hover{transform:translateY(-6px) rotateX(5deg) rotateY(-6deg); border-color:rgba(239,195,110,.26); box-shadow:0 22px 40px rgba(0,0,0,.38)}
-    .stat small{display:block; margin-bottom:8px; color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.14em}
-    .stat b{font-size:17px; font-weight:900}
-
-    .profileCard{
-      position:relative; overflow:hidden;
-      border-radius:30px; padding:22px;
-      background:linear-gradient(180deg, rgba(12,14,24,.76), rgba(12,13,21,.96));
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:var(--shadow-xl);
-      transform-style:preserve-3d;
-    }
-    .profileCard::before{content:''; position:absolute; inset:-55%; background:conic-gradient(from 0deg, transparent, rgba(239,195,110,.2), transparent 28%); animation:spin 12s linear infinite; opacity:.7}
-    .profileInner{position:relative; z-index:1}
-    .vipTag{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:rgba(239,195,110,.08); border:1px solid rgba(239,195,110,.22); color:#ffeab3; font-size:11px; letter-spacing:.18em; text-transform:uppercase}
-    .profileName{margin:14px 0 14px; font-size:30px; font-weight:1000; line-height:1.02; text-transform:uppercase}
-    .kv{display:grid; gap:10px; margin-bottom:16px}
-    .row{display:flex; justify-content:space-between; gap:12px; padding:12px 14px; border-radius:16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08)}
-    .row span{color:var(--muted); font-size:13px}
-    .row b{font-size:13px; text-align:right}
-    .docs{display:grid; gap:10px}
-    .docBtn{width:100%; border:none; cursor:pointer; text-align:left; display:flex; justify-content:space-between; gap:10px; padding:14px 15px; border-radius:16px; color:var(--text); font-weight:900; background:linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.08); transition:transform .16s ease, border-color .16s ease, background .16s ease}
-    .docBtn:hover{transform:translateX(4px); border-color:rgba(239,195,110,.28); background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03))}
-
-    .sectionGrid{display:grid; grid-template-columns:repeat(12, 1fr); gap:18px; margin-top:18px}
-    .panel{
-      position:relative; overflow:hidden; padding:22px; border-radius:28px;
-      background:linear-gradient(180deg, rgba(13,15,25,.84), rgba(10,11,18,.95));
-      border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow);
-      transform-style:preserve-3d;
-      transition:transform .18s ease, border-color .18s ease;
-    }
-    .panel:hover{transform:translateY(-5px); border-color:rgba(255,255,255,.12)}
-    .panel::after{content:''; position:absolute; right:-80px; bottom:-100px; width:250px; height:250px; border-radius:50%; background:radial-gradient(circle, rgba(239,195,110,.12), transparent 68%); pointer-events:none}
-    .panel h3{margin:0 0 14px; color:#ffe4a3; text-transform:uppercase; letter-spacing:.15em; font-size:13px}
-    .panel p{margin:0; color:var(--muted); line-height:1.76; font-size:14px}
-    .list{display:grid; gap:12px; margin-top:14px}
-    .item{display:flex; gap:12px; align-items:flex-start; padding:14px; border-radius:18px; background:rgba(255,255,255,.035); border:1px solid rgba(255,255,255,.08); transition:transform .18s ease, border-color .18s ease}
-    .item:hover{transform:translateY(-4px); border-color:rgba(117,233,255,.24)}
-    .icon{width:30px; height:30px; flex:0 0 30px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(135deg, rgba(255,78,199,.18), rgba(117,233,255,.16)); border:1px solid rgba(255,255,255,.1)}
-    .item b{display:block; margin-bottom:4px; font-size:14px}
-    .item span{color:var(--muted); font-size:13px; line-height:1.6}
-
-    .span-12{grid-column:span 12}
-    .span-8{grid-column:span 8}
-    .span-7{grid-column:span 7}
-    .span-6{grid-column:span 6}
-    .span-5{grid-column:span 5}
-    .span-4{grid-column:span 4}
-
-    .miniGrid{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px}
-
-    .slotMachine{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:14px}
-    .reel{
-      height:100px; border-radius:18px; display:grid; place-items:center;
-      font-size:44px; font-weight:1000;
-      background:linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.02)), linear-gradient(180deg, rgba(16,18,30,.96), rgba(9,10,16,.98));
-      border:1px solid rgba(255,255,255,.08); box-shadow:inset 0 1px 0 rgba(255,255,255,.06), 0 18px 30px rgba(0,0,0,.34);
-      position:relative; overflow:hidden;
-    }
-    .reel::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.1), transparent 26%, transparent 74%, rgba(255,255,255,.06)); pointer-events:none}
-
-    .controlRow{display:flex; gap:12px; flex-wrap:wrap; margin-top:14px}
-    .jackpot{margin-top:14px; padding:15px 16px; min-height:58px; border-radius:16px; display:flex; align-items:center; justify-content:center; text-align:center; background:rgba(239,195,110,.08); border:1px solid rgba(239,195,110,.18); color:#ffe9b9; font-weight:900}
-
-    .cardGameWrap{display:grid; gap:16px}
-    .cardsArea{display:flex; gap:16px; flex-wrap:wrap; perspective:1200px; margin-top:14px}
-    .playCard{
-      width:130px; height:180px; border-radius:18px; position:relative; transform-style:preserve-3d;
-      transition:transform .8s cubic-bezier(.2,.8,.2,1);
-      cursor:pointer;
-    }
-    .playCard.flipped{transform:rotateY(180deg)}
-    .cardFace{
-      position:absolute; inset:0; border-radius:18px; backface-visibility:hidden;
-      border:1px solid rgba(255,255,255,.1); overflow:hidden;
-      box-shadow:var(--shadow);
-    }
-    .cardFront{
-      background:linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02)), linear-gradient(180deg, rgba(15,18,30,.95), rgba(9,11,18,.98));
-      display:grid; place-items:center;
-    }
-    .cardFront::before{content:'♦'; font-size:46px; color:#ffe4a0; text-shadow:0 0 20px rgba(239,195,110,.18)}
-    .cardBack{
-      transform:rotateY(180deg);
-      background:linear-gradient(180deg, rgba(18,20,32,.96), rgba(11,12,20,.98));
-      display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px;
-    }
-    .cardBack .rank{font-size:38px; font-weight:1000}
-    .cardBack .suit{font-size:22px}
-    .cardBack.win{box-shadow:0 0 28px rgba(98,241,196,.26), inset 0 0 0 1px rgba(98,241,196,.26)}
-    .cardBack.lose{box-shadow:0 0 24px rgba(255,111,125,.18), inset 0 0 0 1px rgba(255,111,125,.16)}
-
-    .rouletteWrap{display:grid; gap:16px}
-    .rouletteWheel{
-      width:min(320px, 78vw); aspect-ratio:1; margin:8px auto 0; border-radius:50%; position:relative;
-      border:8px solid rgba(239,195,110,.28); box-shadow:0 0 0 4px rgba(255,255,255,.04), var(--shadow-xl);
-      background:conic-gradient(
-        #0e1018 0deg 18deg,
-        #b41523 18deg 36deg,
-        #101417 36deg 54deg,
-        #176d42 54deg 72deg,
-        #11141a 72deg 90deg,
-        #b41523 90deg 108deg,
-        #101417 108deg 126deg,
-        #176d42 126deg 144deg,
-        #11141a 144deg 162deg,
-        #b41523 162deg 180deg,
-        #101417 180deg 198deg,
-        #176d42 198deg 216deg,
-        #11141a 216deg 234deg,
-        #b41523 234deg 252deg,
-        #101417 252deg 270deg,
-        #176d42 270deg 288deg,
-        #11141a 288deg 306deg,
-        #b41523 306deg 324deg,
-        #101417 324deg 342deg,
-        #176d42 342deg 360deg
-      );
-      transition:transform 4.2s cubic-bezier(.15,.92,.16,1);
-    }
-    .rouletteWheel::before{
-      content:''; position:absolute; inset:13%; border-radius:50%;
-      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.12), rgba(255,255,255,0) 34%), linear-gradient(180deg, rgba(18,20,30,.95), rgba(10,12,18,.98));
-      border:1px solid rgba(255,255,255,.08);
-    }
-    .rouletteWheel::after{content:'DIAMOND'; position:absolute; inset:0; display:grid; place-items:center; font-size:18px; font-weight:1000; letter-spacing:.2em; color:#ffe3a1}
-    .pointer{width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-top:26px solid var(--gold); margin:0 auto; filter:drop-shadow(0 4px 10px rgba(239,195,110,.4))}
-    .rouletteResult{padding:14px 16px; border-radius:16px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); color:#fff0c2; text-align:center; font-weight:900}
-
-    .vipLounge{
-      position:relative; overflow:hidden;
-      min-height:440px;
-      background:
-        linear-gradient(180deg, rgba(10,12,18,.46), rgba(10,12,18,.88)),
-        radial-gradient(circle at 18% 20%, rgba(255,78,199,.12), transparent 18%),
-        radial-gradient(circle at 82% 24%, rgba(117,233,255,.12), transparent 18%),
-        radial-gradient(circle at 50% 0%, rgba(239,195,110,.18), transparent 30%),
-        linear-gradient(135deg, rgba(255,255,255,.02), rgba(255,255,255,0));
-    }
-    .vipLounge::before{content:''; position:absolute; inset:0; background:linear-gradient(90deg, rgba(255,255,255,.04), transparent 14%, transparent 86%, rgba(255,255,255,.04)); opacity:.28; pointer-events:none}
-    .vipGrid{display:grid; grid-template-columns:1.1fr .9fr; gap:18px; align-items:start}
-    .vipBadge{display:inline-flex; gap:10px; align-items:center; padding:10px 14px; border-radius:999px; background:rgba(239,195,110,.1); border:1px solid rgba(239,195,110,.18); color:#ffe6ab; font-size:12px; text-transform:uppercase; letter-spacing:.18em}
-    .vipLounge h3.big{font-size:clamp(32px, 4vw, 56px); margin:16px 0 12px; line-height:.96; text-transform:uppercase; letter-spacing:.06em}
-    .vipLounge h3.big span{display:block; background:linear-gradient(90deg, #fff4ca, var(--gold), #ffebb9); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .vipTable{display:grid; gap:12px; margin-top:18px}
-    .vipRow{display:flex; justify-content:space-between; gap:12px; padding:14px 16px; border-radius:18px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08)}
-    .vipRow span{color:var(--muted); font-size:13px}
-    .vipRow b{font-size:14px}
-
-    .quoteBox{padding:20px; border-radius:22px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); box-shadow:var(--shadow)}
-    .quoteBox p{font-size:17px; line-height:1.9; color:#fff3cf}
-    .quoteBox small{display:block; margin-top:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.12em}
-
-    footer{margin-top:18px; padding:18px; text-align:center; color:rgba(255,255,255,.54); font-size:12px; text-transform:uppercase; letter-spacing:.08em}
-
-    dialog{
-      width:min(980px, 94vw); border:none; padding:0; border-radius:28px; overflow:hidden;
-      background:linear-gradient(180deg, rgba(13,15,24,.96), rgba(10,12,18,.99));
-      color:var(--text); box-shadow:var(--shadow-xl); border:1px solid rgba(255,255,255,.12);
-    }
-    dialog::backdrop{background:rgba(0,0,0,.72); backdrop-filter:blur(7px)}
-    .modalHead{display:flex; justify-content:space-between; align-items:center; gap:12px; padding:16px 18px; border-bottom:1px solid rgba(255,255,255,.08); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0))}
-    .modalHead b{font-size:13px; letter-spacing:.16em; text-transform:uppercase; color:#ffe3a2}
-    .closeBtn{appearance:none; border:none; cursor:pointer; padding:10px 13px; border-radius:12px; color:var(--text); background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); font-weight:900}
-    .modalBody{padding:18px}
-    .hint{margin:0 0 14px; color:var(--muted); line-height:1.7; font-size:14px}
-    .docFrame{border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.08); background:#080a10; max-height:72vh; overflow:auto}
-    .docFrame img{display:block; width:100%; height:auto}
-    .copyBox{border-radius:18px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); padding:16px}
-    code{display:block; white-space:pre-wrap; word-break:break-word; font-size:13px; line-height:1.72; color:#fff2cb; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
-    .modalActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
-
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    @media (max-width:1100px){
-      .heroInner,.vipGrid{grid-template-columns:1fr}
-      .stats{grid-template-columns:repeat(2,1fr)}
-      .span-8,.span-7,.span-6,.span-5,.span-4{grid-column:span 12}
-      .miniGrid{grid-template-columns:1fr}
-    }
-    @media (max-width:820px){
-      .navbar{border-radius:28px; padding:14px}
-      .navBrand h1{font-size:13px; letter-spacing:.14em}
-      .navLinks{justify-content:flex-start}
-      .heroInner{padding:calc(var(--nav-h) + 20px) 20px 20px}
-      .hero{min-height:auto}
-      .hero h2{max-width:100%}
-    }
-    @media (max-width:640px){
-      .navbar{position:relative; top:0; width:min(96vw,96vw)}
-      .navLinks a:nth-child(3), .navLinks a:nth-child(4){display:none}
-      .stats{grid-template-columns:1fr}
-      .slotMachine{grid-template-columns:repeat(3,1fr)}
-      .cardsArea{justify-content:center}
-      .playCard{width:110px; height:154px}
-    }
-  </style>
-</head>
-<body>
-  <div class="noise" aria-hidden="true"></div>
-
-  <div class="lights" aria-hidden="true">
-    <div class="beam b1"></div>
-    <div class="beam b2"></div>
-    <div class="beam b3"></div>
-  </div>
-
-  <div class="sparkles" id="sparkles" aria-hidden="true"></div>
-  <div class="coins" id="coins" aria-hidden="true"></div>
-  <div class="chipFloatLayer" id="chipFloatLayer" aria-hidden="true"></div>
-  <div class="cursorRing" id="cursorRing"></div>
-  <div class="cursorDot" id="cursorDot"></div>
-
-  <div class="loading" id="loadingScreen" aria-live="polite">
-    <div class="loadingBox">
-      <div class="loadingInner">
-        <div class="preloaderLogoGlow"></div>
-        <div class="loadLogo">♦</div>
-        <h1>Diamond Casino</h1>
-        <p>Luxus. Klasse. Kontrolle. Die Premium-Bewerbung wird geladen …</p>
-        <div class="progressWrap"><div class="progressBar" id="progressBar"></div></div>
-        <div class="progressText" id="progressText">Initialisiere VIP-Lounge … 0%</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="intro" id="introScreen" aria-hidden="true">
-    <div class="introCard">
-      <div class="introTop">GTA-Style Entry Sequence</div>
-      <h2><span>Diamond</span> Casino</h2>
-      <p>
-        Willkommen im luxuriösen Bewerbungsprofil von <b>Jeff Adil Cüneyt Rince</b> –
-        inspiriert vom Diamond Casino &amp; Resort Stil aus GTA V Online.
-      </p>
-    </div>
-  </div>
-
-  <div class="app" id="app">
-    <nav class="navbar">
-      <div class="navBrand">
-        <div class="navLogo" aria-hidden="true"></div>
-        <div>
-          <h1>Diamond Casino &amp; Resort</h1>
-          <p>Premium Bewerbung – Jeff Adil Cüneyt Rince</p>
-        </div>
-      </div>
-
-      <div class="navLinks">
-        <a href="#hero">Start</a>
-        <a href="#games">Minigames</a>
-        <a href="#vip">VIP Lounge</a>
-        <a href="#contact">Kontakt</a>
-        <button id="openTicketBtn" type="button">Ticket</button>
-        <button id="soundBtn" class="soundBtn" type="button">🔇 Musik</button>
-        <button id="luxuryModeBtn" class="luxuryToggle" type="button">Gold Black</button>
-      </div>
-    </nav>
-
-    <main class="wrap">
-      <section class="hero" id="hero">
-        <div class="heroBg" id="heroBg"></div>
-        <div class="heroLines"></div>
-        <div class="heroGlow"></div>
-
-        <div class="heroInner">
-          <div>
-            <div class="tag">♦ High Roller Security Candidate</div>
-            <h2>Diamond <span>Application</span></h2>
-            <p class="lead">
-              Sehr geehrtes Team des Diamond Casino &amp; Resort,<br>
-              hiermit bewerbe ich mich als <b>Security</b> mit einem klaren Fokus auf Sicherheit, souveränes Auftreten,
-              Diskretion und Luxus-Standards. Ich möchte die elegante Atmosphäre des Hauses schützen,
-              Gäste professionell betreuen und auch in stressigen Situationen Ruhe, Präsenz und Kontrolle bewahren.
-            </p>
-
-            <div class="heroActions">
-              <button class="btn primary" id="openTicketHero" type="button">Bewerbung öffnen</button>
-              <a class="btn secondary" href="#games">Casino Features</a>
-              <a class="btn ghost" href="#vip">VIP Lounge</a>
-            </div>
-
-            <div class="stats">
-              <div class="stat tilt-card">
-                <small>Name</small>
-                <b>Jeff Adil Cüneyt Rince</b>
-              </div>
-              <div class="stat tilt-card">
-                <small>Alter IC</small>
-                <b>36 Jahre</b>
-              </div>
-              <div class="stat tilt-card">
-                <small>Alter OOC</small>
-                <b>19 Jahre</b>
-              </div>
-              <div class="stat tilt-card">
-                <small>Kontakt</small>
-                <b>6029103965</b>
-              </div>
-            </div>
-          </div>
-
-          <aside class="profileCard tilt-card" id="docs">
-            <div class="profileInner">
-              <div class="vipTag">★ VIP Access Candidate</div>
-              <h3 class="profileName">Jeff Adil Cüneyt Rince</h3>
-
-              <div class="kv">
-                <div class="row"><span>Position</span><b>Security</b></div>
-                <div class="row"><span>Auftreten</span><b>Kontrolliert &amp; souverän</b></div>
-                <div class="row"><span>Stil</span><b>Diskret, loyal, professionell</b></div>
-                <div class="row"><span>Verfügbarkeit</span><b>Flexibel nach Absprache</b></div>
-              </div>
-
-              <div class="docs">
-                <button class="docBtn" id="btnPerso" type="button"><span>🪪 Personalausweis</span><span>Öffnen ↗</span></button>
-                <button class="docBtn" id="btnGutachten" type="button"><span>🧠 Psychologisches Gutachten</span><span>Öffnen ↗</span></button>
-                <button class="docBtn" id="btnWaffe" type="button"><span>🔫 Waffenschein</span><span>Öffnen ↗</span></button>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section class="sectionGrid">
-        <article class="panel span-7 tilt-card">
-          <h3>Warum ich perfekt zum Diamond Casino passe</h3>
-          <p>
-            Das Diamond Casino steht für Luxus, Exklusivität und eine hochwertige Außendarstellung.
-            Genau hier sehe ich meine Stärke: Ich schaffe durch Präsenz und ruhige Kontrolle Sicherheit, ohne die Eleganz des Hauses zu stören.
-            Mein Ziel ist es, Risiken früh zu erkennen, deeskalierend zu handeln und Mitarbeitende wie Gäste durch Professionalität zu entlasten.
-          </p>
-          <div class="list">
-            <div class="item"><div class="icon">♦</div><div><b>Diskretion mit Stil</b><span>Keine unnötige Härte, sondern sauberes, souveränes Auftreten auf Casino-Niveau.</span></div></div>
-            <div class="item"><div class="icon">🛡</div><div><b>Prävention vor Eskalation</b><span>Probleme erkennen, bevor sie das Haus oder die Atmosphäre belasten.</span></div></div>
-            <div class="item"><div class="icon">★</div><div><b>Luxus braucht Struktur</b><span>Ein High-End-Casino funktioniert nur mit klaren Standards, Loyalität und Kontrolle.</span></div></div>
-          </div>
-        </article>
-
-        <article class="panel span-5 tilt-card">
-          <h3>Stärken &amp; Vorgehensweise</h3>
-          <div class="list">
-            <div class="item"><div class="icon">⚡</div><div><b>Stressresistent</b><span>Auch bei Events, Peak-Zeiten oder vollen Eingangsbereichen ruhig und konzentriert.</span></div></div>
-            <div class="item"><div class="icon">🎧</div><div><b>Team- &amp; Funkdisziplin</b><span>Klare Übergaben, abgestimmtes Arbeiten und saubere Kommunikation.</span></div></div>
-            <div class="item"><div class="icon">🎯</div><div><b>Verhältnismäßiges Handeln</b><span>Kontrolliert, professionell und situationsgerecht statt impulsiv.</span></div></div>
-            <div class="item"><div class="icon">👁</div><div><b>Situationsbewusstsein</b><span>Blick für Crowd-Flow, Ein- und Ausgänge sowie sensible VIP-Bereiche.</span></div></div>
-          </div>
-        </article>
-      </section>
-
-      <section class="sectionGrid" id="games">
-        <article class="panel span-12 tilt-card">
-          <h3>Casino Minigames &amp; Interaktive Features</h3>
-          <p>
-            Für noch mehr Diamond-Casino-Feeling enthält diese Seite mehrere kleine Features:
-            eine Slot-Machine, ein Card-Flip-Minispiel und ein Roulette-Spin.
-          </p>
-        </article>
-
-        <div class="span-12 miniGrid">
-          <article class="panel tilt-card">
-            <h3>Slot Machine</h3>
-            <p>Drehe die Rollen und versuche den Jackpot zu knacken.</p>
-            <div class="slotMachine" aria-label="Slot Machine">
-              <div class="reel" id="reel1">♦</div>
-              <div class="reel" id="reel2">7</div>
-              <div class="reel" id="reel3">★</div>
-            </div>
-            <div class="controlRow">
-              <button class="btn primary small" id="spinBtn" type="button">Spin</button>
-              <button class="btn secondary small" id="autoSpinBtn" type="button">Auto x3</button>
-            </div>
-            <div class="jackpot" id="jackpotText">Willkommen im Diamond Casino – drücke auf Spin.</div>
-          </article>
-
-          <article class="panel tilt-card">
-            <h3>Card Flip</h3>
-            <p>Decke die Karten auf. Zwei Asse bedeuten Premium Luck.</p>
-            <div class="cardGameWrap">
-              <div class="cardsArea" id="cardsArea"></div>
-              <div class="controlRow">
-                <button class="btn primary small" id="dealCardsBtn" type="button">Neue Runde</button>
-              </div>
-              <div class="jackpot" id="cardResult">Decke die Karten auf und teste dein Glück.</div>
-            </div>
-          </article>
-
-          <article class="panel tilt-card">
-            <h3>Roulette Spin</h3>
-            <p>Starte das Rad und lande auf deiner Glücksfarbe.</p>
-            <div class="rouletteWrap">
-              <div class="pointer"></div>
-              <div class="rouletteWheel" id="rouletteWheel"></div>
-              <div class="controlRow">
-                <button class="btn primary small" id="rouletteBtn" type="button">Roulette drehen</button>
-              </div>
-              <div class="rouletteResult" id="rouletteResult">Bereit für einen Spin.</div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="sectionGrid" id="vip">
-        <article class="panel span-12 vipLounge tilt-card">
-          <div class="vipGrid">
-            <div>
-              <div class="vipBadge">✦ VIP Lounge / High Roller Bereich</div>
-              <h3 class="big">Luxus, Diskretion <span>&amp; volle Kontrolle</span></h3>
-              <p>
-                Der VIP-Bereich ist der sensibelste Teil des Hauses: exklusive Gäste, hohe Erwartungen und kein Raum für Fehler.
-                Genau dort sehe ich meine Rolle. Durch ruhige Präsenz, Aufmerksamkeit und professionelles Handeln kann ich dazu beitragen,
-                dass High Roller, Mitarbeitende und Events sicher und stilvoll begleitet werden.
-              </p>
-
-              <div class="vipTable">
-                <div class="vipRow"><span>VIP-Standard</span><b>Diskret &amp; serviceorientiert</b></div>
-                <div class="vipRow"><span>Sicherheitsstil</span><b>Präsent, aber unaufdringlich</b></div>
-                <div class="vipRow"><span>Fokus</span><b>Gäste, Eigentum, Hausregeln</b></div>
-                <div class="vipRow"><span>Ideal für</span><b>Events, Peak-Zeiten, High-Roller Abende</b></div>
-              </div>
-            </div>
-
-            <div class="quoteBox">
-              <p>
-                „Luxus zeigt sich nicht nur im Ambiente – sondern darin, dass sich jeder Gast jederzeit sicher,
-                willkommen und professionell betreut fühlt.“
-              </p>
-              <small>Jeff Adil Cüneyt Rince</small>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <section class="sectionGrid" id="contact">
-        <article class="panel span-6 tilt-card">
-          <h3>Verfügbarkeit</h3>
-          <p>
-            Ich bin flexibel einsetzbar und nach Absprache auch bei besonderen Events oder hohem Gästeaufkommen verfügbar.
-            Besonders in intensiven Phasen möchte ich das Team zuverlässig entlasten und die Qualität des Hauses schützen.
-          </p>
-        </article>
-
-        <article class="panel span-6 tilt-card">
-          <h3>Kontakt &amp; Abschluss</h3>
-          <p>
-            Ich freue mich über eine Rückmeldung und die Möglichkeit, mich in einem Gespräch oder einer Probeschicht persönlich zu beweisen.
-            Vielen Dank für Ihre Zeit und die Prüfung meiner Bewerbung.
-          </p>
-          <div class="list">
-            <div class="item"><div class="icon">📛</div><div><b>Name</b><span>Jeff Adil Cüneyt Rince</span></div></div>
-            <div class="item"><div class="icon">☎</div><div><b>Handynummer</b><span>6029103965</span></div></div>
-            <div class="item"><div class="icon">♦</div><div><b>Bewerbung</b><span>Diamond Casino &amp; Resort – Security</span></div></div>
-          </div>
-        </article>
-      </section>
-
-      <footer>
-        ♦ Diamond Casino &amp; Resort – Premium Bewerbung von Jeff Adil Cüneyt Rince
-      </footer>
-    </main>
-  </div>
-
-  <dialog id="docModal">
-    <div class="modalHead">
-      <b id="docTitle">Dokument</b>
-      <button class="closeBtn" id="docClose" type="button">Schließen</button>
-    </div>
-    <div class="modalBody">
-      <p class="hint" id="docHint">Dokumentansicht.</p>
-      <div class="docFrame">
-        <img id="docImg" alt="Dokument" />
-      </div>
-      <div class="modalActions">
-        <button class="btn secondary small" id="btnOpenNewTab" type="button">In neuem Tab öffnen</button>
-        <a class="btn ghost small" id="btnDownload" href="#" download>Datei herunterladen</a>
-      </div>
-    </div>
-  </dialog>
-
-  <dialog id="ticketModal">
-    <div class="modalHead">
-      <b>Bewerbungs-Vorschau</b>
-      <button class="closeBtn" id="ticketClose" type="button">Schließen</button>
-    </div>
-    <div class="modalBody">
-      <p class="hint">Diesen Text kannst du direkt als Ticket oder Bewerbung verwenden.</p>
-      <div class="copyBox">
-        <code id="ticketText"></code>
-      </div>
-      <div class="modalActions">
-        <button class="btn primary small" id="copyTicketBtn" type="button">Text kopieren</button>
-      </div>
-    </div>
-  </dialog>
-
-  <script>
-    const FILES = {
-      perso: 'perso.png',
-      gutachten: 'gutachten.png',
-      waffenschein: 'waffenschein.png'
-    };
-
-    const ticket = `💎 Diamond Casino & Resort – Premium Bewerbung\n\nName / Ingame-Name: Jeff Adil Cüneyt Rince\nAlter (IC): 36 Jahre\nAlter (OOC): 19 Jahre\nHandynummer: 6029103965\nPosition: Security\n\nWarum möchte ich im Diamond Casino arbeiten?\n- Ich möchte Teil eines exklusiven und professionellen Hauses sein\n- Gäste und Mitarbeitende sollen sich jederzeit sicher fühlen\n- Ich handle ruhig, diskret und professionell\n- Ich möchte die luxuriöse Atmosphäre des Casinos aktiv schützen\n\nStärken:\n- Stressresistent und belastbar\n- Deeskalierendes, kontrolliertes Handeln\n- Teamfähig und kommunikativ\n- Prävention statt Eskalation\n- Loyalität, Diskretion und Verantwortungsbewusstsein\n\nVerfügbarkeit:\n- Flexibel nach Absprache\n- Besonders bei Events, Peak-Zeiten und hohem Gästeaufkommen verfügbar\n\nDokumente:\n- Personalausweis\n- Psychologisches Gutachten\n- Waffenschein\n\nMit freundlichen Grüßen\nJeff Adil Cüneyt Rince`;
-
-    document.getElementById('ticketText').textContent = ticket;
-
-    document.body.classList.add('gold-black-mode');
-    const rand = (min, max) => Math.random() * (max - min) + min;
-
-    // custom cursor
-    const cursorDot = document.getElementById('cursorDot');
-    const cursorRing = document.getElementById('cursorRing');
-    let cursorX = window.innerWidth / 2, cursorY = window.innerHeight / 2;
-    let ringX = cursorX, ringY = cursorY;
-    window.addEventListener('mousemove', (e) => {
-      cursorX = e.clientX;
-      cursorY = e.clientY;
-      cursorDot.style.left = cursorX + 'px';
-      cursorDot.style.top = cursorY + 'px';
+<script>
+  const FILES = {
+    perso: 'perso.png',
+    gutachten: 'gutachten.png',
+    waffenschein: 'waffenschein.png'
+  };
+
+  const ticket = `💎 Diamond Casino & Resort – Premium Bewerbung
+
+Name / Ingame-Name: Jeff Adil Cüneyt Rince
+Alter (IC): 36 Jahre
+Alter (OOC): 19 Jahre
+Handynummer: 6029103965
+Position: Security
+
+Warum möchte ich im Diamond Casino arbeiten?
+- Ich möchte Teil eines exklusiven und professionellen Hauses sein
+- Gäste und Mitarbeitende sollen sich jederzeit sicher fühlen
+- Ich handle ruhig, diskret und professionell
+- Ich möchte die luxuriöse Atmosphäre des Casinos aktiv schützen
+
+Stärken:
+- Stressresistent und belastbar
+- Deeskalierendes, kontrolliertes Handeln
+- Teamfähig und kommunikativ
+- Prävention statt Eskalation
+- Loyalität, Diskretion und Verantwortungsbewusstsein
+
+Verfügbarkeit:
+- Flexibel nach Absprache
+- Besonders bei Events, Peak-Zeiten und hohem Gästeaufkommen verfügbar
+
+Dokumente:
+- Personalausweis
+- Psychologisches Gutachten
+- Waffenschein
+
+Mit freundlichen Grüßen
+Jeff Adil Cüneyt Rince`;
+
+  document.getElementById('ticketText').textContent = ticket;
+
+  document.body.classList.add('gold-black-mode');
+
+  const rand = (min, max) => Math.random() * (max - min) + min;
+
+  // custom cursor
+  const cursorDot = document.getElementById('cursorDot');
+  const cursorRing = document.getElementById('cursorRing');
+  let cursorX = window.innerWidth / 2, cursorY = window.innerHeight / 2;
+  let ringX = cursorX, ringY = cursorY;
+
+  window.addEventListener('mousemove', (e) => {
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+    cursorDot.style.left = cursorX + 'px';
+    cursorDot.style.top = cursorY + 'px';
+  });
+
+  function animateCursor(){
+    ringX += (cursorX - ringX) * 0.18;
+    ringY += (cursorY - ringY) * 0.18;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateCursor);
+  }
+  animateCursor();
+
+  document.querySelectorAll('a, button, input, textarea, .playCard, .docBtn').forEach(el => {
+    el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+  });
+
+  // floating casino chips
+  const chipLayer = document.getElementById('chipFloatLayer');
+  const chipColors = ['red','blue','green','gold'];
+
+  for(let i = 0; i < 12; i++){
+    const chip = document.createElement('div');
+    chip.className = `chipFloat ${chipColors[i % chipColors.length]}`;
+    chip.style.left = rand(0, 100) + 'vw';
+    chip.style.top = rand(70, 120) + 'vh';
+    chip.style.animationDuration = rand(10, 20) + 's';
+    chip.style.animationDelay = rand(0, 12) + 's';
+    chip.style.transform = `scale(${rand(.75, 1.25)})`;
+    chipLayer.appendChild(chip);
+  }
+
+  // luxury theme toggle
+  const luxuryModeBtn = document.getElementById('luxuryModeBtn');
+  if(luxuryModeBtn){
+    luxuryModeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('gold-black-mode');
+      luxuryModeBtn.textContent = document.body.classList.contains('gold-black-mode')
+        ? 'Gold Black'
+        : 'Classic Neon';
     });
-    function animateCursor(){
-      ringX += (cursorX - ringX) * 0.18;
-      ringY += (cursorY - ringY) * 0.18;
-      cursorRing.style.left = ringX + 'px';
-      cursorRing.style.top = ringY + 'px';
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-    document.querySelectorAll('a, button, input, textarea, .playCard, .docBtn').forEach(el => {
-      el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
-    });
+  }
 
-    // floating casino chips
-    const chipLayer = document.getElementById('chipFloatLayer');
-    const chipColors = ['red','blue','green','gold'];
-    for(let i = 0; i < 12; i++){
-      const chip = document.createElement('div');
-      chip.className = `chipFloat ${chipColors[i % chipColors.length]}`;
-      chip.style.left = rand(0, 100) + 'vw';
-      chip.style.top = rand(70, 120) + 'vh';
-      chip.style.animationDuration = rand(10, 20) + 's';
-      chip.style.animationDelay = rand(0, 12) + 's';
-      chip.style.transform = `scale(${rand(.75, 1.25)})`;
-      chipLayer.appendChild(chip);
-    }
+  // sparkle generation
+  const sparkHost = document.getElementById('sparkles');
+  for(let i = 0; i < 34; i++){
+    const s = document.createElement('div');
+    s.className = 'spark';
+    const size = rand(3, 8);
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    s.style.left = rand(0, 100) + 'vw';
+    s.style.top = rand(65, 110) + 'vh';
+    s.style.animationDuration = rand(7, 13) + 's';
+    s.style.animationDelay = rand(0, 8) + 's';
+    sparkHost.appendChild(s);
+  }
 
-    // luxury theme toggle
-    const luxuryModeBtn = document.getElementById('luxuryModeBtn');
-    if(luxuryModeBtn){
-      luxuryModeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('gold-black-mode');
-        luxuryModeBtn.textContent = document.body.classList.contains('gold-black-mode') ? 'Gold Black' : 'Classic Neon';
-      });
-    }
+  // coin rain
+  const coinHost = document.getElementById('coins');
+  for(let i = 0; i < 14; i++){
+    const c = document.createElement('div');
+    c.className = 'coin';
+    c.style.left = rand(0, 100) + 'vw';
+    c.style.animationDuration = rand(7, 13) + 's';
+    c.style.animationDelay = rand(0, 12) + 's';
+    c.style.opacity = rand(.45, .85);
+    c.style.transform = `scale(${rand(.8,1.4)})`;
+    coinHost.appendChild(c);
+  }
 
-    // sparkle generation
-    const sparkHost = document.getElementById('sparkles');
-    for(let i = 0; i < 34; i++){
-      const s = document.createElement('div');
-      s.className = 'spark';
-      const size = rand(3, 8);
-      s.style.width = size + 'px';
-      s.style.height = size + 'px';
-      s.style.left = rand(0, 100) + 'vw';
-      s.style.top = rand(65, 110) + 'vh';
-      s.style.animationDuration = rand(7, 13) + 's';
-      s.style.animationDelay = rand(0, 8) + 's';
-      sparkHost.appendChild(s);
-    }
+  // loading + intro sequence
+  const loadingScreen = document.getElementById('loadingScreen');
+  const introScreen = document.getElementById('introScreen');
+  const app = document.getElementById('app');
+  const progressBar = document.getElementById('progressBar');
+  const progressText = document.getElementById('progressText');
 
-    // coin rain
-    const coinHost = document.getElementById('coins');
-    for(let i = 0; i < 14; i++){
-      const c = document.createElement('div');
-      c.className = 'coin';
-      c.style.left = rand(0, 100) + 'vw';
-      c.style.animationDuration = rand(7, 13) + 's';
-      c.style.animationDelay = rand(0, 12) + 's';
-      c.style.opacity = rand(.45, .85);
-      c.style.transform = `scale(${rand(.8,1.4)})`;
-      coinHost.appendChild(c);
-    }
+  const loadingMessages = [
+    'Initialisiere VIP-Lounge …',
+    'Aktiviere Neon-System …',
+    'Lade Diamond-Ambiente …',
+    'Bereite High-Roller-Bereich vor …',
+    'Starte Casino-Animationen …',
+    'Bewerbungsprofil wird finalisiert …'
+  ];
 
-    // loading + intro sequence
-    const loadingScreen = document.getElementById('loadingScreen');
-    const introScreen = document.getElementById('introScreen');
-    const app = document.getElementById('app');
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
+  let progress = 0;
+  let messageIndex = 0;
 
-    const loadingMessages = [
-      'Initialisiere VIP-Lounge …',
-      'Aktiviere Neon-System …',
-      'Lade Diamond-Ambiente …',
-      'Bereite High-Roller-Bereich vor …',
-      'Starte Casino-Animationen …',
-      'Bewerbungsprofil wird finalisiert …'
-    ];
+  const loadInterval = setInterval(() => {
+    progress += rand(7, 18);
+    if(progress > 100) progress = 100;
+    progressBar.style.width = progress + '%';
+    progressText.textContent = `${loadingMessages[messageIndex % loadingMessages.length]} ${Math.floor(progress)}%`;
+    messageIndex++;
 
-    let progress = 0;
-    let messageIndex = 0;
-    const loadInterval = setInterval(() => {
-      progress += rand(7, 18);
-      if(progress > 100) progress = 100;
-      progressBar.style.width = progress + '%';
-      progressText.textContent = `${loadingMessages[messageIndex % loadingMessages.length]} ${Math.floor(progress)}%`;
-      messageIndex++;
-      if(progress >= 100){
-        clearInterval(loadInterval);
-        setTimeout(() => {
-          loadingScreen.classList.add('hide');
-          introScreen.classList.add('show');
-          setTimeout(() => {
-            introScreen.classList.add('hide');
-            app.classList.add('ready');
-          }, 2300);
-        }, 450);
-      }
-    }, 280);
-
-    // hero parallax
-    const hero = document.querySelector('.hero');
-    const heroBg = document.getElementById('heroBg');
-    hero.addEventListener('mousemove', (e) => {
-      const rect = hero.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - .5;
-      const y = (e.clientY - rect.top) / rect.height - .5;
-      hero.style.transform = `rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 8).toFixed(2)}deg)`;
-      heroBg.style.transform = `scale(1.06) translate(${x * 18}px, ${y * 14}px)`;
-    });
-    hero.addEventListener('mouseleave', () => {
-      hero.style.transform = 'rotateX(0deg) rotateY(0deg)';
-      heroBg.style.transform = 'scale(1.05) translate(0,0)';
-    });
-
-    // tilt cards
-    document.querySelectorAll('.tilt-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform = `rotateX(${(-y * 7).toFixed(2)}deg) rotateY(${(x * 9).toFixed(2)}deg) translateY(-4px)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-
-    // copy helper
-    async function copyToClipboard(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        return true;
-      }catch{
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        const ok = document.execCommand('copy');
-        document.body.removeChild(ta);
-        return ok;
-      }
-    }
-
-    // document modal
-    const docModal = document.getElementById('docModal');
-    const docImg = document.getElementById('docImg');
-    const docTitle = document.getElementById('docTitle');
-    const docHint = document.getElementById('docHint');
-    const btnOpenNewTab = document.getElementById('btnOpenNewTab');
-    const btnDownload = document.getElementById('btnDownload');
-    let currentDoc = null;
-
-    function openDoc(title, file){
-      currentDoc = file;
-      docTitle.textContent = title;
-      docHint.textContent = `Datei: ${file}`;
-      docImg.src = file;
-      docImg.alt = title;
-      btnDownload.href = file;
-      btnDownload.setAttribute('download', file);
-      if(typeof docModal.showModal === 'function') docModal.showModal();
-      else window.open(file, '_blank', 'noopener,noreferrer');
-    }
-
-    document.getElementById('btnPerso').addEventListener('click', () => openDoc('Personalausweis', FILES.perso));
-    document.getElementById('btnGutachten').addEventListener('click', () => openDoc('Psychologisches Gutachten', FILES.gutachten));
-    document.getElementById('btnWaffe').addEventListener('click', () => openDoc('Waffenschein', FILES.waffenschein));
-    document.getElementById('docClose').addEventListener('click', () => docModal.close());
-    btnOpenNewTab.addEventListener('click', () => { if(currentDoc) window.open(currentDoc, '_blank', 'noopener,noreferrer'); });
-    docModal.addEventListener('click', (e) => {
-      const rect = docModal.getBoundingClientRect();
-      const inside = rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientX && e.clientX <= rect.right;
-      if(!inside) docModal.close();
-    });
-
-    // ticket modal
-    const ticketModal = document.getElementById('ticketModal');
-    const openTicketButtons = [document.getElementById('openTicketBtn'), document.getElementById('openTicketHero')];
-    openTicketButtons.forEach(btn => btn.addEventListener('click', () => {
-      if(typeof ticketModal.showModal === 'function') ticketModal.showModal();
-      else alert(ticket);
-    }));
-    document.getElementById('ticketClose').addEventListener('click', () => ticketModal.close());
-    document.getElementById('copyTicketBtn').addEventListener('click', async (e) => {
-      const btn = e.currentTarget;
-      const ok = await copyToClipboard(ticket);
-      btn.textContent = ok ? '✅ Kopiert!' : '⚠️ Fehler';
-      setTimeout(() => btn.textContent = 'Text kopieren', 1300);
-    });
-    ticketModal.addEventListener('click', (e) => {
-      const rect = ticketModal.getBoundingClientRect();
-      const inside = rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientX && e.clientX <= rect.right;
-      if(!inside) ticketModal.close();
-    });
-
-    // slot game
-    const icons = ['♦', '7', '★', '♣', '♥', '💎'];
-    const reel1 = document.getElementById('reel1');
-    const reel2 = document.getElementById('reel2');
-    const reel3 = document.getElementById('reel3');
-    const spinBtn = document.getElementById('spinBtn');
-    const autoSpinBtn = document.getElementById('autoSpinBtn');
-    const jackpotText = document.getElementById('jackpotText');
-
-    function randomIcon(){ return icons[Math.floor(Math.random() * icons.length)]; }
-    function animateReel(el, duration = 900){
-      return new Promise(resolve => {
-        const start = performance.now();
-        function frame(now){
-          el.textContent = randomIcon();
-          if(now - start < duration) requestAnimationFrame(frame);
-          else resolve();
-        }
-        requestAnimationFrame(frame);
-      });
-    }
-    async function spinSlots(){
-      spinBtn.disabled = true; autoSpinBtn.disabled = true;
-      jackpotText.textContent = 'Die Rollen drehen sich ...';
-      await Promise.all([animateReel(reel1, 850), animateReel(reel2, 1200), animateReel(reel3, 1550)]);
-      const a = reel1.textContent, b = reel2.textContent, c = reel3.textContent;
-      if(a === b && b === c) jackpotText.textContent = '🎉 JACKPOT! Perfekter Treffer – High Roller Luck.';
-      else if(a === b || b === c || a === c) jackpotText.textContent = '✨ Stark! Zwei Symbole passen – fast ein Jackpot.';
-      else jackpotText.textContent = '♠ Kein Treffer – versuche es erneut.';
-      spinBtn.disabled = false; autoSpinBtn.disabled = false;
-    }
-    spinBtn.addEventListener('click', spinSlots);
-    autoSpinBtn.addEventListener('click', async () => {
-      spinBtn.disabled = true; autoSpinBtn.disabled = true;
-      for(let i = 0; i < 3; i++){
-        await spinSlots();
-        await new Promise(r => setTimeout(r, 420));
-      }
-      spinBtn.disabled = false; autoSpinBtn.disabled = false;
-    });
-
-    // card flip game
-    const cardsArea = document.getElementById('cardsArea');
-    const dealCardsBtn = document.getElementById('dealCardsBtn');
-    const cardResult = document.getElementById('cardResult');
-    const deckChoices = [
-      { rank:'A', suit:'♦', score:3 },
-      { rank:'A', suit:'♠', score:3 },
-      { rank:'K', suit:'♥', score:2 },
-      { rank:'Q', suit:'♣', score:1 },
-      { rank:'J', suit:'♦', score:1 },
-      { rank:'7', suit:'★', score:2 }
-    ];
-
-    function createCard(cardData){
-      const card = document.createElement('div');
-      card.className = 'playCard';
-      card.innerHTML = `
-        <div class="cardFace cardFront"></div>
-        <div class="cardFace cardBack ${cardData.score >= 3 ? 'win' : 'lose'}">
-          <div class="rank">${cardData.rank}</div>
-          <div class="suit">${cardData.suit}</div>
-        </div>
-      `;
-      return card;
-    }
-
-    function shuffleArray(arr){
-      return [...arr].sort(() => Math.random() - .5);
-    }
-
-    function setupCards(){
-      cardsArea.innerHTML = '';
-      cardResult.textContent = 'Decke die Karten auf und teste dein Glück.';
-      const selected = shuffleArray(deckChoices).slice(0, 3);
-      let flippedCount = 0;
-      let totalScore = 0;
-      selected.forEach(data => {
-        const card = createCard(data);
-        card.addEventListener('click', () => {
-          if(card.classList.contains('flipped')) return;
-          card.classList.add('flipped');
-          flippedCount++;
-          totalScore += data.score;
-          if(flippedCount === 3){
-            if(totalScore >= 8) cardResult.textContent = '💎 Premium Luck! High-Roller-Karten gezogen.';
-            else if(totalScore >= 5) cardResult.textContent = '✨ Gute Runde! Starkes Blatt.';
-            else cardResult.textContent = '♣ Solide Runde – probiere eine neue Ausgabe.';
-          }
-        }, { once:true });
-        cardsArea.appendChild(card);
-      });
-    }
-    dealCardsBtn.addEventListener('click', setupCards);
-    setupCards();
-
-    // roulette
-    const rouletteWheel = document.getElementById('rouletteWheel');
-    const rouletteBtn = document.getElementById('rouletteBtn');
-    const rouletteResult = document.getElementById('rouletteResult');
-    const rouletteValues = [
-      'Schwarz 2', 'Rot 7', 'Schwarz 11', 'Grün 0', 'Schwarz 4',
-      'Rot 13', 'Schwarz 8', 'Grün 00', 'Schwarz 1', 'Rot 9',
-      'Schwarz 6', 'Grün VIP', 'Schwarz 10', 'Rot 15', 'Schwarz 3',
-      'Grün 5', 'Schwarz 12', 'Rot 14', 'Schwarz 16', 'Grün 18'
-    ];
-    let rouletteRotation = 0;
-    rouletteBtn.addEventListener('click', () => {
-      const index = Math.floor(Math.random() * rouletteValues.length);
-      const segmentAngle = 360 / rouletteValues.length;
-      const targetCenter = index * segmentAngle + segmentAngle / 2;
-      rouletteRotation += 1440 + (360 - targetCenter);
-      rouletteWheel.style.transform = `rotate(${rouletteRotation}deg)`;
-      rouletteResult.textContent = 'Das Rad dreht sich ...';
-      rouletteBtn.disabled = true;
+    if(progress >= 100){
+      clearInterval(loadInterval);
       setTimeout(() => {
-        rouletteResult.textContent = `Ergebnis: ${rouletteValues[index]}`;
-        rouletteBtn.disabled = false;
-      }, 4300);
+        loadingScreen.classList.add('hide');
+        introScreen.classList.add('show');
+        setTimeout(() => {
+          introScreen.classList.add('hide');
+          app.classList.add('ready');
+        }, 2300);
+      }, 450);
+    }
+  }, 280);
+
+  // hero parallax
+  const hero = document.querySelector('.hero');
+  const heroBg = document.getElementById('heroBg');
+
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - .5;
+    const y = (e.clientY - rect.top) / rect.height - .5;
+    hero.style.transform = `rotateX(${(-y * 6).toFixed(2)}deg) rotateY(${(x * 8).toFixed(2)}deg)`;
+    heroBg.style.transform = `scale(1.06) translate(${x * 18}px, ${y * 14}px)`;
+  });
+
+  hero.addEventListener('mouseleave', () => {
+    hero.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    heroBg.style.transform = 'scale(1.05) translate(0,0)';
+  });
+
+  // tilt cards
+  document.querySelectorAll('.tilt-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `rotateX(${(-y * 7).toFixed(2)}deg) rotateY(${(x * 9).toFixed(2)}deg) translateY(-4px)`;
     });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
 
-    // fake music button with Web Audio API ambient tones
-    let audioCtx = null;
-    let masterGain = null;
-    let ambientNodes = [];
-    let isPlaying = false;
-    const soundBtn = document.getElementById('soundBtn');
+  // copy helper
+  async function copyToClipboard(text){
+    try{
+      await navigator.clipboard.writeText(text);
+      return true;
+    }catch{
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      const ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    }
+  }
 
-    function stopAmbient(){
-      ambientNodes.forEach(node => {
-        try{ node.stop && node.stop(); }catch{}
-        try{ node.disconnect && node.disconnect(); }catch{}
-      });
-      ambientNodes = [];
-      if(masterGain){
-        masterGain.gain.cancelScheduledValues(audioCtx.currentTime);
-        masterGain.gain.setTargetAtTime(0.0001, audioCtx.currentTime, .2);
+  // document modal
+  const docModal = document.getElementById('docModal');
+  const docImg = document.getElementById('docImg');
+  const docTitle = document.getElementById('docTitle');
+  const docHint = document.getElementById('docHint');
+  const btnOpenNewTab = document.getElementById('btnOpenNewTab');
+  const btnDownload = document.getElementById('btnDownload');
+  let currentDoc = null;
+
+  function openDoc(title, file){
+    currentDoc = file;
+    docTitle.textContent = title;
+    docHint.textContent = `Datei: ${file}`;
+    docImg.src = file;
+    docImg.alt = title;
+    btnDownload.href = file;
+    btnDownload.setAttribute('download', file);
+
+    if(typeof docModal.showModal === 'function') docModal.showModal();
+    else window.open(file, '_blank', 'noopener,noreferrer');
+  }
+
+  document.getElementById('btnPerso').addEventListener('click', () => openDoc('Personalausweis', FILES.perso));
+  document.getElementById('btnGutachten').addEventListener('click', () => openDoc('Psychologisches Gutachten', FILES.gutachten));
+  document.getElementById('btnWaffe').addEventListener('click', () => openDoc('Waffenschein', FILES.waffenschein));
+
+  document.getElementById('docClose').addEventListener('click', () => docModal.close());
+
+  btnOpenNewTab.addEventListener('click', () => {
+    if(currentDoc) window.open(currentDoc, '_blank', 'noopener,noreferrer');
+  });
+
+  docModal.addEventListener('click', (e) => {
+    const rect = docModal.getBoundingClientRect();
+    const inside = rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientX && e.clientX <= rect.right;
+    if(!inside) docModal.close();
+  });
+
+  // ticket modal
+  const ticketModal = document.getElementById('ticketModal');
+  const openTicketButtons = [document.getElementById('openTicketBtn'), document.getElementById('openTicketHero')];
+
+  openTicketButtons.forEach(btn => btn.addEventListener('click', () => {
+    if(typeof ticketModal.showModal === 'function') ticketModal.showModal();
+    else alert(ticket);
+  }));
+
+  document.getElementById('ticketClose').addEventListener('click', () => ticketModal.close());
+
+  document.getElementById('copyTicketBtn').addEventListener('click', async (e) => {
+    const btn = e.currentTarget;
+    const ok = await copyToClipboard(ticket);
+    btn.textContent = ok ? '✅ Kopiert!' : '⚠️ Fehler';
+    setTimeout(() => btn.textContent = 'Text kopieren', 1300);
+  });
+
+  ticketModal.addEventListener('click', (e) => {
+    const rect = ticketModal.getBoundingClientRect();
+    const inside = rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientX && e.clientX <= rect.right;
+    if(!inside) ticketModal.close();
+  });
+
+  // slot game
+  const icons = ['♦', '7', '★', '♣', '♥', '💎'];
+  const reel1 = document.getElementById('reel1');
+  const reel2 = document.getElementById('reel2');
+  const reel3 = document.getElementById('reel3');
+  const spinBtn = document.getElementById('spinBtn');
+  const autoSpinBtn = document.getElementById('autoSpinBtn');
+  const jackpotText = document.getElementById('jackpotText');
+
+  function randomIcon(){
+    return icons[Math.floor(Math.random() * icons.length)];
+  }
+
+  function animateReel(el, duration = 900){
+    return new Promise(resolve => {
+      const start = performance.now();
+      function frame(now){
+        el.textContent = randomIcon();
+        if(now - start < duration) requestAnimationFrame(frame);
+        else resolve();
       }
-      isPlaying = false;
-      soundBtn.classList.remove('active');
-      soundBtn.textContent = '🔇 Musik';
+      requestAnimationFrame(frame);
+    });
+  }
+
+  async function spinSlots(){
+    spinBtn.disabled = true;
+    autoSpinBtn.disabled = true;
+    jackpotText.textContent = 'Die Rollen drehen sich ...';
+
+    await Promise.all([
+      animateReel(reel1, 850),
+      animateReel(reel2, 1200),
+      animateReel(reel3, 1550)
+    ]);
+
+    const a = reel1.textContent;
+    const b = reel2.textContent;
+    const c = reel3.textContent;
+
+    if(a === b && b === c) jackpotText.textContent = '🎉 JACKPOT! Perfekter Treffer – High Roller Luck.';
+    else if(a === b || b === c || a === c) jackpotText.textContent = '✨ Stark! Zwei Symbole passen – fast ein Jackpot.';
+    else jackpotText.textContent = '♠ Kein Treffer – versuche es erneut.';
+
+    spinBtn.disabled = false;
+    autoSpinBtn.disabled = false;
+  }
+
+  spinBtn.addEventListener('click', spinSlots);
+
+  autoSpinBtn.addEventListener('click', async () => {
+    spinBtn.disabled = true;
+    autoSpinBtn.disabled = true;
+
+    for(let i = 0; i < 3; i++){
+      await spinSlots();
+      await new Promise(r => setTimeout(r, 420));
     }
 
-    function startAmbient(){
-      if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      masterGain = audioCtx.createGain();
-      masterGain.gain.value = 0.025;
-      masterGain.connect(audioCtx.destination);
+    spinBtn.disabled = false;
+    autoSpinBtn.disabled = false;
+  });
 
-      const now = audioCtx.currentTime;
-      const freqs = [130.81, 164.81, 196.00, 261.63];
-      freqs.forEach((freq, idx) => {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = idx % 2 === 0 ? 'sine' : 'triangle';
-        osc.frequency.value = freq;
-        gain.gain.value = 0.0001;
-        osc.connect(gain);
-        gain.connect(masterGain);
-        osc.start();
-        gain.gain.setTargetAtTime(0.018 / (idx + 1), now + idx * .2, 1.2 + idx * .2);
-        ambientNodes.push(osc, gain);
-      });
+  // card flip game
+  const cardsArea = document.getElementById('cardsArea');
+  const dealCardsBtn = document.getElementById('dealCardsBtn');
+  const cardResult = document.getElementById('cardResult');
 
-      // light pulse layer
-      const lfo = audioCtx.createOscillator();
-      const lfoGain = audioCtx.createGain();
-      lfo.type = 'sine';
-      lfo.frequency.value = 0.12;
-      lfoGain.gain.value = 0.008;
-      lfo.connect(lfoGain);
-      lfoGain.connect(masterGain.gain);
-      lfo.start();
-      ambientNodes.push(lfo, lfoGain);
+  const deckChoices = [
+    { rank:'A', suit:'♦', score:3 },
+    { rank:'A', suit:'♠', score:3 },
+    { rank:'K', suit:'♥', score:2 },
+    { rank:'Q', suit:'♣', score:1 },
+    { rank:'J', suit:'♦', score:1 },
+    { rank:'7', suit:'★', score:2 }
+  ];
 
-      isPlaying = true;
-      soundBtn.classList.add('active');
-      soundBtn.textContent = '🔊 Musik';
+  function createCard(cardData){
+    const card = document.createElement('div');
+    card.className = 'playCard';
+    card.innerHTML = `
+      <div class="cardFace cardFront"></div>
+      <div class="cardFace cardBack ${cardData.score >= 3 ? 'win' : 'lose'}">
+        <div class="rank">${cardData.rank}</div>
+        <div class="suit">${cardData.suit}</div>
+      </div>
+    `;
+    return card;
+  }
+
+  function shuffleArray(arr){
+    return [...arr].sort(() => Math.random() - .5);
+  }
+
+  function setupCards(){
+    cardsArea.innerHTML = '';
+    cardResult.textContent = 'Decke die Karten auf und teste dein Glück.';
+    const selected = shuffleArray(deckChoices).slice(0, 3);
+    let flippedCount = 0;
+    let totalScore = 0;
+
+    selected.forEach(data => {
+      const card = createCard(data);
+      card.addEventListener('click', () => {
+        if(card.classList.contains('flipped')) return;
+        card.classList.add('flipped');
+        flippedCount++;
+        totalScore += data.score;
+
+        if(flippedCount === 3){
+          if(totalScore >= 8) cardResult.textContent = '💎 Premium Luck! High-Roller-Karten gezogen.';
+          else if(totalScore >= 5) cardResult.textContent = '✨ Gute Runde! Starkes Blatt.';
+          else cardResult.textContent = '♣ Solide Runde – probiere eine neue Ausgabe.';
+        }
+      }, { once:true });
+
+      cardsArea.appendChild(card);
+    });
+  }
+
+  dealCardsBtn.addEventListener('click', setupCards);
+  setupCards();
+
+  // roulette
+  const rouletteWheel = document.getElementById('rouletteWheel');
+  const rouletteBtn = document.getElementById('rouletteBtn');
+  const rouletteResult = document.getElementById('rouletteResult');
+  const rouletteValues = [
+    'Schwarz 2', 'Rot 7', 'Schwarz 11', 'Grün 0', 'Schwarz 4',
+    'Rot 13', 'Schwarz 8', 'Grün 00', 'Schwarz 1', 'Rot 9',
+    'Schwarz 6', 'Grün VIP', 'Schwarz 10', 'Rot 15', 'Schwarz 3',
+    'Grün 5', 'Schwarz 12', 'Rot 14', 'Schwarz 16', 'Grün 18'
+  ];
+
+  let rouletteRotation = 0;
+
+  rouletteBtn.addEventListener('click', () => {
+    const index = Math.floor(Math.random() * rouletteValues.length);
+    const segmentAngle = 360 / rouletteValues.length;
+    const targetCenter = index * segmentAngle + segmentAngle / 2;
+
+    rouletteRotation += 1440 + (360 - targetCenter);
+    rouletteWheel.style.transform = `rotate(${rouletteRotation}deg)`;
+    rouletteResult.textContent = 'Das Rad dreht sich ...';
+    rouletteBtn.disabled = true;
+
+    setTimeout(() => {
+      rouletteResult.textContent = `Ergebnis: ${rouletteValues[index]}`;
+      rouletteBtn.disabled = false;
+    }, 4300);
+  });
+
+  // =========================
+  // ECHTE MUSIK-DATEI
+  // =========================
+  const music = document.getElementById('casinoMusic');
+  const soundBtn = document.getElementById('soundBtn');
+
+  let isPlaying = false;
+  let fadeInterval = null;
+
+  function fadeInMusic(targetVolume = 0.4){
+    clearInterval(fadeInterval);
+    music.volume = 0;
+
+    const playPromise = music.play();
+    if(playPromise !== undefined){
+      playPromise.catch(() => {});
     }
 
-    soundBtn.addEventListener('click', async () => {
-      try{
-        if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if(audioCtx.state === 'suspended') await audioCtx.resume();
-        if(isPlaying) stopAmbient();
-        else startAmbient();
-      }catch{
-        soundBtn.textContent = '⚠️ Kein Audio';
+    let vol = 0;
+    fadeInterval = setInterval(() => {
+      if(vol < targetVolume){
+        vol += 0.02;
+        music.volume = Math.min(vol, targetVolume);
+      } else {
+        clearInterval(fadeInterval);
       }
-    });
-  </script>
-  <script>
-    // Extended premium enhancements
-    (function(){
-      const heroBg = document.getElementById('heroBg');
-      if(heroBg){
-        heroBg.style.background = `
-          linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.78)),
-          radial-gradient(circle at 20% 20%, rgba(255,78,199,.14), transparent 24%),
-          radial-gradient(circle at 82% 20%, rgba(117,233,255,.11), transparent 22%),
-          radial-gradient(circle at 50% -10%, rgba(239,195,110,.22), transparent 32%),
-          url('gta-intro.mp4') center/cover no-repeat,
-          url('casino-banner.png') center/cover no-repeat`;
+    }, 100);
+  }
+
+  function fadeOutMusic(){
+    clearInterval(fadeInterval);
+
+    let vol = music.volume;
+    fadeInterval = setInterval(() => {
+      if(vol > 0.02){
+        vol -= 0.02;
+        music.volume = Math.max(vol, 0);
+      } else {
+        clearInterval(fadeInterval);
+        music.pause();
+        music.currentTime = 0;
       }
+    }, 100);
+  }
 
-      const heroSection = document.getElementById('hero');
-      if(heroSection){
-        const video = document.createElement('video');
-        video.src = 'gta-intro.mp4';
-        video.autoplay = true;
-        video.muted = true;
-        video.loop = true;
-        video.playsInline = true;
-        video.setAttribute('playsinline', '');
-        video.setAttribute('muted', '');
-        Object.assign(video.style, {
-          position:'absolute', inset:'0', width:'100%', height:'100%', objectFit:'cover',
-          opacity:'0.28', zIndex:'0', pointerEvents:'none', mixBlendMode:'screen'
-        });
-        heroSection.insertBefore(video, heroSection.firstChild);
+  soundBtn.addEventListener('click', async () => {
+    try{
+      if(!isPlaying){
+        fadeInMusic(0.4);
+        soundBtn.classList.add('active');
+        soundBtn.textContent = '🔊 Musik';
+        isPlaying = true;
+      } else {
+        fadeOutMusic();
+        soundBtn.classList.remove('active');
+        soundBtn.textContent = '🔇 Musik';
+        isPlaying = false;
       }
-
-      const wrap = document.querySelector('.wrap');
-      if(wrap && !document.getElementById('terminalSection')){
-        const terminal = document.createElement('section');
-        terminal.className = 'sectionGrid';
-        terminal.innerHTML = `
-          <article class="panel span-12 tilt-card" id="terminalSection">
-            <h3>Casino Terminal Bewerbung</h3>
-            <p>Ein interaktives Formular im Casino-Terminal-Stil für deine Premium-Bewerbung.</p>
-            <div style="margin-top:16px; display:grid; grid-template-columns:1.1fr .9fr; gap:18px;">
-              <div style="padding:18px; border-radius:22px; background:linear-gradient(180deg, rgba(7,10,18,.96), rgba(7,10,18,.84)); border:1px solid rgba(98,241,196,.18); box-shadow:0 0 0 1px rgba(98,241,196,.06), 0 20px 40px rgba(0,0,0,.34); position:relative; overflow:hidden;">
-                <div style="position:absolute; inset:0; pointer-events:none; background:repeating-linear-gradient(180deg, rgba(98,241,196,.04) 0 2px, transparent 2px 4px); opacity:.18"></div>
-                <div style="position:relative; z-index:1; display:grid; gap:12px;">
-                  <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; padding:10px 12px; border-radius:14px; background:rgba(98,241,196,.06); border:1px solid rgba(98,241,196,.14); color:#d8fff2; text-transform:uppercase; letter-spacing:.14em; font-size:12px;">Diamond Access Terminal <span style="color:#9bffd9">Online</span></div>
-                  <label style="display:grid; gap:6px; font-size:13px; color:rgba(255,255,255,.8)">Name
-                    <input id="termName" value="Jeff Adil Cüneyt Rince" style="width:100%; padding:14px 14px; border-radius:14px; border:1px solid rgba(98,241,196,.16); background:rgba(0,0,0,.26); color:#dffdf3; outline:none; font:inherit;" />
-                  </label>
-                  <label style="display:grid; gap:6px; font-size:13px; color:rgba(255,255,255,.8)">Position
-                    <input id="termPosition" value="Security" style="width:100%; padding:14px 14px; border-radius:14px; border:1px solid rgba(98,241,196,.16); background:rgba(0,0,0,.26); color:#dffdf3; outline:none; font:inherit;" />
-                  </label>
-                  <label style="display:grid; gap:6px; font-size:13px; color:rgba(255,255,255,.8)">Stärken
-                    <textarea id="termStrength" rows="5" style="width:100%; padding:14px 14px; border-radius:14px; border:1px solid rgba(98,241,196,.16); background:rgba(0,0,0,.26); color:#dffdf3; outline:none; font:inherit; resize:vertical;">Diskretion, Deeskalation, Präsenz, Funkdisziplin, Stressresistenz</textarea>
-                  </label>
-                  <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                    <button class="btn primary small" type="button" id="terminalGenerate">Terminal Vorschau</button>
-                    <button class="btn secondary small" type="button" id="terminalClear">Reset</button>
-                  </div>
-                </div>
-              </div>
-              <div style="padding:18px; border-radius:22px; background:linear-gradient(180deg, rgba(14,16,27,.94), rgba(8,10,16,.98)); border:1px solid rgba(255,255,255,.08); box-shadow:0 20px 40px rgba(0,0,0,.34);">
-                <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:12px;">
-                  <div style="color:#ffe4a3; text-transform:uppercase; letter-spacing:.14em; font-size:12px;">Live Bewerbungsausgabe</div>
-                  <div style="padding:6px 10px; border-radius:999px; background:rgba(239,195,110,.08); border:1px solid rgba(239,195,110,.16); color:#ffe7b2; font-size:11px; text-transform:uppercase;">High Roller Mode</div>
-                </div>
-                <pre id="terminalPreview" style="margin:0; white-space:pre-wrap; min-height:300px; border-radius:16px; padding:16px; background:rgba(0,0,0,.28); border:1px solid rgba(255,255,255,.06); color:#e9ffd8; font:13px/1.7 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; box-shadow:inset 0 0 0 1px rgba(98,241,196,.04);"></pre>
-              </div>
-            </div>
-          </article>`;
-        wrap.insertBefore(terminal, wrap.querySelector('footer'));
-
-        const termName = terminal.querySelector('#termName');
-        const termPosition = terminal.querySelector('#termPosition');
-        const termStrength = terminal.querySelector('#termStrength');
-        const terminalPreview = terminal.querySelector('#terminalPreview');
-        const renderTerminal = () => {
-          terminalPreview.textContent =
-`> DIAMOND CASINO ACCESS TERMINAL
-> APPLICANT PROFILE LOADED
-
-NAME: ${termName.value || '-'}
-POSITION: ${termPosition.value || '-'}
-ROLE STATUS: VERIFIED CANDIDATE
-
-PRIMARY STRENGTHS:
-${(termStrength.value || '-').split(',').map(s => `- ${s.trim()}`).join('
-')}
-
-ASSESSMENT:
-Dieser Kandidat eignet sich für kontrollierte Security-Aufgaben
-mit Fokus auf Diskretion, Präsenz und professionelles Handeln.
-
-TERMINAL STATUS: READY FOR REVIEW`;
-        };
-        terminal.querySelector('#terminalGenerate').addEventListener('click', renderTerminal);
-        terminal.querySelector('#terminalClear').addEventListener('click', () => {
-          termName.value = '';
-          termPosition.value = '';
-          termStrength.value = '';
-          renderTerminal();
-        });
-        renderTerminal();
-      }
-
-      // richer soundscape
-      const soundBtn = document.getElementById('soundBtn');
-      if(soundBtn && !soundBtn.dataset.enhanced){
-        soundBtn.dataset.enhanced = '1';
-        let fxCtx = null;
-        let fxNodes = [];
-        let fxPlaying = false;
-        const stopFx = () => {
-          fxNodes.forEach(n => { try{n.stop && n.stop();}catch{} try{n.disconnect && n.disconnect();}catch{} });
-          fxNodes = [];
-          fxPlaying = false;
-          soundBtn.classList.remove('active');
-          soundBtn.textContent = '🔇 Musik';
-        };
-        const startFx = async () => {
-          if(!fxCtx) fxCtx = new (window.AudioContext || window.webkitAudioContext)();
-          if(fxCtx.state === 'suspended') await fxCtx.resume();
-          const master = fxCtx.createGain();
-          master.gain.value = 0.04;
-          master.connect(fxCtx.destination);
-          const padFreqs = [110, 138.59, 174.61, 220];
-          padFreqs.forEach((freq, i) => {
-            const osc = fxCtx.createOscillator();
-            const gain = fxCtx.createGain();
-            osc.type = i % 2 ? 'triangle' : 'sine';
-            osc.frequency.value = freq;
-            gain.gain.value = 0.001;
-            osc.connect(gain);
-            gain.connect(master);
-            osc.start();
-            gain.gain.setTargetAtTime(0.018 / (i + 1), fxCtx.currentTime, 1.6 + i * .3);
-            fxNodes.push(osc, gain);
-          });
-          const shimmer = fxCtx.createOscillator();
-          const shimmerGain = fxCtx.createGain();
-          shimmer.type = 'sawtooth';
-          shimmer.frequency.value = 523.25;
-          shimmerGain.gain.value = 0.0001;
-          shimmer.connect(shimmerGain);
-          shimmerGain.connect(master);
-          shimmer.start();
-          shimmerGain.gain.setTargetAtTime(0.003, fxCtx.currentTime, 2.4);
-          fxNodes.push(shimmer, shimmerGain);
-          fxPlaying = true;
-          soundBtn.classList.add('active');
-          soundBtn.textContent = '🔊 Musik';
-        };
-        soundBtn.addEventListener('click', async (e) => {
-          e.stopImmediatePropagation();
-          if(fxPlaying) stopFx(); else await startFx();
-        }, true);
-      }
-    })();
-  </script>
-</body>
-</html>
+    }catch{
+      soundBtn.textContent = '⚠️ Audio Fehler';
+    }
+  });
+</script>
