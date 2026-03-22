@@ -3,708 +3,1069 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Diamond Casino & Resort – Bewerbung | Jeff Jeremain</title>
-  <meta name="description" content="Schriftliche Bewerbung – Diamond Casino & Resort – Security" />
+  <title>Diamond Casino & Resort – Bewerbung | Jeff Adil Cüneyt Rince</title>
+  <meta name="description" content="Bewerbung für das Diamond Casino & Resort im GTA 5 Stil" />
 
   <style>
     :root{
-      /* Dunkler Sunset/Purple Casino Style (durchgehend) */
-      --bg0:#0c0210;     /* fast schwarz-violett */
-      --bg1:#17051f;     /* deep purple */
-      --bg2:#2a0a35;     /* purple */
-      --bg3:#4a0f49;     /* magenta purple */
-      --pink:#ff66c4;    /* neon pink */
-      --rose:#ff7b8f;    /* sunset rose */
-      --peach:#ffc0a9;   /* peach glow */
-      --gold:#ffd57a;
+      --bg:#07070b;
+      --bg2:#0e0c18;
+      --bg3:#151125;
+      --panel:rgba(13,13,21,.78);
+      --panel-2:rgba(18,16,30,.92);
+      --line:rgba(255,255,255,.08);
 
-      --ink: rgba(255,255,255,.93);
-      --muted: rgba(255,255,255,.72);
+      --white:#f7f5ff;
+      --muted:rgba(255,255,255,.70);
 
-      /* KEIN Weiß-Glas mehr */
-      --panel: rgba(10, 2, 16, .78);      /* dunkler Panel */
-      --panel2: rgba(16, 4, 24, .72);
-      --row: rgba(18, 5, 26, .72);
+      --gold:#f2c46f;
+      --gold-2:#ffd98f;
+      --green:#67f4c7;
+      --cyan:#7beaff;
+      --pink:#ff59c7;
+      --purple:#8c65ff;
 
-      --stroke: rgba(255,255,255,.10);
-      --stroke2: rgba(255,255,255,.07);
-
-      --shadow: 0 20px 70px rgba(0,0,0,.60);
-      --shadow2: 0 14px 45px rgba(0,0,0,.45);
-
-      --radius: 22px;
-      --radius2: 16px;
+      --shadow:0 20px 60px rgba(0,0,0,.45);
+      --shadow-strong:0 30px 90px rgba(0,0,0,.6);
+      --radius:24px;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--ink);
-      overflow-x:hidden;
-
+      min-height:100vh;
+      color:var(--white);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       background:
-        radial-gradient(1200px 650px at 50% 0%, rgba(255, 123, 143, .22), transparent 60%),
-        radial-gradient(900px 600px at 10% 25%, rgba(255, 102, 196, .16), transparent 55%),
-        radial-gradient(900px 650px at 90% 30%, rgba(140, 64, 200, .16), transparent 55%),
-        radial-gradient(1000px 700px at 55% 95%, rgba(255, 192, 169, .12), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1) 25%, var(--bg2) 55%, var(--bg0));
+        radial-gradient(circle at 20% 20%, rgba(255,89,199,.12), transparent 25%),
+        radial-gradient(circle at 80% 10%, rgba(123,234,255,.10), transparent 24%),
+        radial-gradient(circle at 50% 75%, rgba(242,196,111,.12), transparent 35%),
+        linear-gradient(180deg, #06060a 0%, #0b0913 30%, #110d1d 60%, #07070b 100%);
+      overflow-x:hidden;
     }
 
-    /* Dezente Casino-Deko: Chips + Slot-Reels (ohne weißes Auswaschen) */
+    /* Animated background */
     body::before{
       content:"";
-      position:fixed; inset:0;
+      position:fixed;
+      inset:0;
       pointer-events:none;
-      opacity:.22;
-      mix-blend-mode: screen;
-
-      background-image:
-        /* Slot-Reels (sehr dezent) */
-        repeating-linear-gradient(90deg,
-          rgba(255,255,255,0) 0px,
-          rgba(255,255,255,0) 26px,
-          rgba(255, 102, 196, .06) 26px,
-          rgba(255, 102, 196, .06) 28px
+      opacity:.28;
+      background:
+        repeating-linear-gradient(
+          90deg,
+          transparent 0px,
+          transparent 58px,
+          rgba(255,255,255,.03) 58px,
+          rgba(255,255,255,.03) 60px
         ),
-        /* Chip-Ringe */
-        radial-gradient(circle at 12% 20%,
-          rgba(255, 123, 143, .0) 0 14px,
-          rgba(255, 123, 143, .10) 14px 15px,
-          rgba(255, 123, 143, .0) 16px 40px
-        ),
-        radial-gradient(circle at 86% 22%,
-          rgba(255, 213, 122, .0) 0 16px,
-          rgba(255, 213, 122, .09) 16px 17px,
-          rgba(255, 213, 122, .0) 18px 44px
-        ),
-        radial-gradient(circle at 22% 80%,
-          rgba(255, 192, 169, .0) 0 15px,
-          rgba(255, 192, 169, .08) 15px 16px,
-          rgba(255, 192, 169, .0) 17px 42px
+        repeating-linear-gradient(
+          0deg,
+          transparent 0px,
+          transparent 58px,
+          rgba(255,255,255,.02) 58px,
+          rgba(255,255,255,.02) 60px
         );
-      background-size: 340px 340px, auto, auto, auto;
-      filter: blur(.15px);
+      mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
     }
 
-    /* Sparkles (wie Feuerwerk, aber dunkel + elegant) */
-    .sparkles{ position:fixed; inset:0; pointer-events:none; overflow:hidden; }
+    .lights{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:0;
+    }
+    .beam{
+      position:absolute;
+      width:30vw;
+      height:120vh;
+      top:-10vh;
+      filter:blur(30px);
+      opacity:.12;
+      transform:rotate(18deg);
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+    .beam.b1{left:-5vw;background:linear-gradient(180deg, transparent, var(--pink), transparent)}
+    .beam.b2{left:28vw;background:linear-gradient(180deg, transparent, var(--cyan), transparent);animation-duration:18s}
+    .beam.b3{right:10vw;background:linear-gradient(180deg, transparent, var(--gold), transparent);animation-duration:16s}
+
+    @keyframes drift{
+      from{transform:rotate(14deg) translateY(-10px)}
+      to{transform:rotate(24deg) translateY(20px)}
+    }
+
+    .sparkles{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+    }
     .spark{
       position:absolute;
-      width:7px; height:7px;
       border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,0) 70%);
+      background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,0) 70%);
+      animation:floatUp linear infinite;
       opacity:0;
-      animation: pop 8.2s ease-in-out infinite;
-      filter: drop-shadow(0 10px 24px rgba(0,0,0,.45));
     }
-    @keyframes pop{
-      0%{ transform: translateY(22vh) scale(.55); opacity:0; }
-      12%{ opacity:.42; }
-      40%{ opacity:.18; }
-      68%{ opacity:.36; transform: translateY(-10vh) scale(1.12); }
-      100%{ opacity:0; transform: translateY(-26vh) scale(.75); }
+    @keyframes floatUp{
+      0%{transform:translateY(20vh) scale(.4);opacity:0}
+      15%{opacity:.5}
+      75%{opacity:.2}
+      100%{transform:translateY(-30vh) scale(1.15);opacity:0}
     }
 
     .wrap{
-      width:min(1120px, 92vw);
-      margin: 42px auto 90px;
+      width:min(1240px, 92vw);
+      margin:24px auto 60px;
       position:relative;
+      z-index:1;
     }
 
-    /* Topbar */
-    .top{
+    .topbar{
       display:flex;
       justify-content:space-between;
       align-items:center;
-      gap:14px;
-      margin-bottom:14px;
+      gap:16px;
+      margin-bottom:18px;
+      padding:14px 18px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(10,10,18,.55);
+      backdrop-filter:blur(14px);
+      box-shadow:var(--shadow);
     }
 
-    .brand{ display:flex; align-items:center; gap:12px; }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
     .logo{
-      width:54px; height:54px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(circle at 30% 25%, rgba(255,255,255,.85), rgba(255,255,255,0) 55%),
-        linear-gradient(135deg, rgba(255, 102, 196,.40), rgba(255, 123, 143,.28), rgba(140, 64, 200,.26));
-      box-shadow:
-        0 18px 55px rgba(255,102,196,.14),
-        0 20px 65px rgba(255,123,143,.10);
+      width:62px;
+      height:62px;
+      border-radius:20px;
       position:relative;
       overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(circle at 28% 25%, rgba(255,255,255,.8), rgba(255,255,255,0) 38%),
+        linear-gradient(135deg, rgba(242,196,111,.35), rgba(255,89,199,.25), rgba(123,234,255,.18));
+      box-shadow:
+        0 0 30px rgba(242,196,111,.2),
+        0 0 60px rgba(255,89,199,.12);
+    }
+    .logo::before{
+      content:"♦";
+      position:absolute;
+      inset:0;
+      display:grid;
+      place-items:center;
+      font-size:28px;
+      font-weight:900;
+      color:#fff6d6;
+      text-shadow:0 0 18px rgba(242,196,111,.5);
     }
     .logo::after{
       content:"";
-      position:absolute; inset:-70%;
-      background: conic-gradient(from 220deg, rgba(255,255,255,0), rgba(255,255,255,.42), rgba(255,255,255,0));
-      opacity:.35;
-      animation: spin 9s linear infinite;
+      position:absolute;
+      inset:-60%;
+      background:conic-gradient(from 0deg, transparent, rgba(255,255,255,.45), transparent 32%);
+      animation:spin 8s linear infinite;
     }
-    @keyframes spin{ to{ transform: rotate(360deg);} }
+    @keyframes spin{to{transform:rotate(360deg)}}
 
     .brand h1{
       margin:0;
-      font-size:16px;
-      letter-spacing:.65px;
-      text-transform: uppercase;
-      line-height:1.05;
+      font-size:15px;
+      letter-spacing:.26em;
+      text-transform:uppercase;
+      font-weight:900;
     }
     .brand p{
-      margin:4px 0 0;
+      margin:5px 0 0;
       font-size:12.5px;
-      color: var(--muted);
+      color:var(--muted);
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
 
-    .pill{
-      display:inline-flex;
+    .status{
+      display:flex;
       align-items:center;
       gap:10px;
-      padding:10px 12px;
+      padding:10px 14px;
       border-radius:999px;
-      background: rgba(0,0,0,.30);
       border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
+      background:rgba(255,255,255,.03);
+      color:var(--white);
       font-size:13px;
-      color: rgba(255,255,255,.86);
+      box-shadow:var(--shadow);
       white-space:nowrap;
     }
-    .pill .dot{
-      width:10px; height:10px;
+    .statusDot{
+      width:11px;
+      height:11px;
       border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,0) 55%), var(--pink);
-      box-shadow: 0 0 20px rgba(255,102,196,.35);
+      background:var(--green);
+      box-shadow:0 0 18px rgba(103,244,199,.8);
+      animation:pulse 1.8s infinite;
+    }
+    @keyframes pulse{
+      0%,100%{transform:scale(1);opacity:1}
+      50%{transform:scale(1.25);opacity:.7}
     }
 
-    /* Hero */
     .hero{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(12,2,16,.78), rgba(12,2,16,.62));
-      box-shadow: var(--shadow);
-      overflow:hidden;
       position:relative;
+      overflow:hidden;
+      border-radius:32px;
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        linear-gradient(180deg, rgba(13,12,20,.65), rgba(13,12,20,.90)),
+        radial-gradient(circle at top center, rgba(242,196,111,.14), transparent 45%);
+      box-shadow:var(--shadow-strong);
+      min-height:540px;
     }
 
-    .banner{
-      height: 170px;
+    .heroGlow{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
       background:
-        radial-gradient(900px 220px at 50% 10%, rgba(255,192,169,.20), transparent 60%),
-        linear-gradient(90deg, rgba(12,2,16,.55), rgba(74,15,73,.20), rgba(255,123,143,.12)),
-        url("casino-banner.png");
-      background-size: cover;
-      background-position:center;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      position:relative;
+        radial-gradient(circle at 15% 30%, rgba(255,89,199,.18), transparent 26%),
+        radial-gradient(circle at 85% 30%, rgba(123,234,255,.14), transparent 22%),
+        radial-gradient(circle at 50% 0%, rgba(242,196,111,.16), transparent 40%);
     }
-    .banner::after{
-      content:"";
-      position:absolute; inset:0;
+
+    .heroBanner{
+      position:absolute;
+      inset:0;
       background:
-        radial-gradient(circle at 18% 65%, rgba(255,255,255,.14), transparent 50%),
-        radial-gradient(circle at 82% 25%, rgba(255,255,255,.10), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55));
-      opacity:.9;
-      mix-blend-mode: overlay;
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.72)),
+        url("casino-banner.png") center/cover no-repeat;
+      opacity:.34;
+      transform:scale(1.05);
     }
 
     .heroInner{
-      padding: 18px;
+      position:relative;
+      z-index:1;
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:16px;
-      align-items:start;
-    }
-    @media (max-width: 920px){
-      .heroInner{ grid-template-columns: 1fr; }
-      .banner{ height: 150px; }
+      grid-template-columns:1.2fr .8fr;
+      gap:22px;
+      padding:34px;
+      min-height:540px;
+      align-items:center;
     }
 
-    .title{
-      margin:0;
-      font-size:30px;
-      letter-spacing:.7px;
-      text-transform: uppercase;
-      line-height:1.05;
-    }
-    .subtitle{
-      margin:10px 0 0;
-      color: var(--muted);
-      font-size:14px;
-      line-height:1.65;
-      max-width: 74ch;
-    }
-
-    /* Info chips – dunkle pills */
-    .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:14px;
-    }
-    .chip{
+    .eyebrow{
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding:10px 12px;
+      padding:10px 14px;
       border-radius:999px;
-      background: rgba(0,0,0,.28);
+      background:rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.10);
-      color: rgba(255,255,255,.88);
-      font-size:13px;
-      box-shadow: 0 12px 34px rgba(0,0,0,.28);
-    }
-    .chip b{ font-weight:900; color: rgba(255,255,255,.95); }
-    .ic{
-      width:22px; height:22px;
-      border-radius: 10px;
-      display:grid; place-items:center;
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.18), rgba(255,255,255,0) 60%),
-        linear-gradient(135deg, rgba(255,102,196,.18), rgba(255,123,143,.14), rgba(140,64,200,.14));
-      box-shadow: 0 12px 34px rgba(0,0,0,.30);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:#fff3c8;
+      box-shadow:var(--shadow);
     }
 
-    /* Cards / Panels */
-    .card{
-      background: linear-gradient(180deg, var(--panel), var(--panel2));
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: 18px;
-      padding:14px;
-      box-shadow: var(--shadow2);
-      position:relative;
-      overflow:hidden;
-    }
-    .card::before{
-      content:"";
-      position:absolute; inset:-60%;
-      background: conic-gradient(from 210deg, rgba(255,255,255,0), rgba(255,255,255,.14), rgba(255,255,255,0));
-      opacity:.18;
-      animation: spin 12s linear infinite;
-    }
-    .card > *{ position:relative; }
-
-    .card h3{
-      margin:0 0 10px;
-      font-size:13px;
-      letter-spacing:.85px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.92);
+    .hero h2{
+      margin:18px 0 14px;
+      font-size:clamp(34px, 5vw, 72px);
+      line-height:.95;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      font-weight:1000;
+      max-width:12ch;
+      text-shadow:
+        0 0 20px rgba(242,196,111,.18),
+        0 0 40px rgba(255,89,199,.10);
     }
 
-    .kv{ display:grid; gap:10px; }
-    .row{
+    .hero h2 .accent{
+      display:block;
+      color:#ffe2a6;
+      background:linear-gradient(90deg, #fff2c2, #f2c46f, #ffdba0);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .lead{
+      max-width:62ch;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:15px;
+      margin:0 0 22px;
+    }
+
+    .heroButtons{
       display:flex;
-      justify-content:space-between;
       gap:12px;
-      padding:10px 12px;
-      border-radius: 14px;
-      background: rgba(0,0,0,.25);
-      border:1px solid rgba(255,255,255,.08);
-      font-size:13px;
-    }
-    .row span{ color: rgba(255,255,255,.70); }
-    .row b{ color: rgba(255,255,255,.95); font-weight:900; }
-
-    /* Buttons */
-    .actions{
-      display:flex;
-      gap:10px;
       flex-wrap:wrap;
-      margin-top: 12px;
+      margin-bottom:24px;
     }
+
     .btn{
       appearance:none;
       border:none;
       cursor:pointer;
-      padding:12px 14px;
-      border-radius:14px;
-      font-weight: 950;
-      letter-spacing:.2px;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      transition: transform .15s ease, filter .15s ease;
-      user-select:none;
-      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      padding:14px 18px;
+      border-radius:16px;
+      font-weight:900;
+      font-size:14px;
+      letter-spacing:.03em;
+      color:var(--white);
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+      box-shadow:var(--shadow);
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-    .btn:active{ transform: translateY(0px) scale(.99); }
-
-    /* Primary = pink/gold casino */
+    .btn:hover{
+      transform:translateY(-2px) scale(1.01);
+      filter:brightness(1.05);
+    }
     .btn.primary{
-      color: rgba(14,3,18,.95);
-      background: linear-gradient(135deg, var(--gold), rgba(255,102,196,.92));
+      color:#1b1205;
+      background:linear-gradient(135deg, var(--gold-2), var(--gold), #ffebba);
+      box-shadow:
+        0 12px 30px rgba(242,196,111,.22),
+        0 0 24px rgba(242,196,111,.18);
     }
-    /* Secondary = dark neon outline */
     .btn.secondary{
-      color: rgba(255,255,255,.92);
-      background: rgba(0,0,0,.22);
-      border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(135deg, rgba(255,89,199,.16), rgba(140,101,255,.12));
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--white);
     }
-    .btn.small{
-      padding:10px 12px;
-      border-radius:12px;
+    .btn.ghost{
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .stat{
+      padding:16px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(10px);
+      box-shadow:var(--shadow);
+      transform:translateY(0);
+      transition:transform .2s ease, border-color .2s ease;
+    }
+    .stat:hover{
+      transform:translateY(-4px);
+      border-color:rgba(242,196,111,.35);
+    }
+    .stat small{
+      display:block;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:11px;
+      margin-bottom:8px;
+    }
+    .stat b{
+      font-size:18px;
       font-weight:900;
     }
 
-    /* Content grid */
-    .grid{
-      margin-top:16px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:16px;
-    }
-    @media (max-width: 920px){
-      .grid{ grid-template-columns: 1fr; }
+    .profileCard{
+      position:relative;
+      border-radius:28px;
+      padding:22px;
+      background:linear-gradient(180deg, rgba(13,13,22,.82), rgba(20,18,32,.95));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow-strong);
+      overflow:hidden;
     }
 
-    .text{
+    .profileCard::before{
+      content:"";
+      position:absolute;
+      inset:-50%;
+      background:conic-gradient(from 0deg, transparent, rgba(242,196,111,.18), transparent 26%);
+      animation:spin 11s linear infinite;
+      opacity:.55;
+    }
+
+    .profileInner{
+      position:relative;
+      z-index:1;
+    }
+
+    .vip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(242,196,111,.10);
+      color:#ffe5aa;
+      border:1px solid rgba(242,196,111,.22);
+      text-transform:uppercase;
+      font-size:11px;
+      letter-spacing:.16em;
+      margin-bottom:14px;
+    }
+
+    .profileName{
+      margin:0 0 14px;
+      font-size:28px;
+      line-height:1.05;
+      font-weight:1000;
+      text-transform:uppercase;
+    }
+
+    .kv{
+      display:grid;
+      gap:10px;
+      margin-bottom:16px;
+    }
+
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      align-items:center;
+      padding:12px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .row span{
+      color:var(--muted);
+      font-size:13px;
+    }
+    .row b{
+      font-size:13px;
+      text-align:right;
+    }
+
+    .docs{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .docBtn{
+      width:100%;
+      text-align:left;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:14px 15px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      color:var(--white);
+      cursor:pointer;
+      transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+      box-shadow:var(--shadow);
+      font-weight:800;
+    }
+    .docBtn:hover{
+      transform:translateX(3px);
+      border-color:rgba(242,196,111,.35);
+      box-shadow:0 20px 40px rgba(0,0,0,.32);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12, 1fr);
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .panel{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      padding:22px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(13,13,22,.84), rgba(17,16,28,.94));
+      box-shadow:var(--shadow);
+    }
+
+    .panel::after{
+      content:"";
+      position:absolute;
+      inset:auto -30% -70% auto;
+      width:240px;
+      height:240px;
+      background:radial-gradient(circle, rgba(242,196,111,.14), transparent 68%);
+      pointer-events:none;
+    }
+
+    .panel h3{
+      margin:0 0 14px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:13px;
+      color:#ffe3a0;
+    }
+
+    .panel p{
       margin:0;
-      color: rgba(255,255,255,.78);
-      line-height:1.65;
+      color:var(--muted);
+      line-height:1.75;
       font-size:14px;
     }
 
+    .span-7{grid-column:span 7}
+    .span-5{grid-column:span 5}
+    .span-4{grid-column:span 4}
+    .span-8{grid-column:span 8}
+    .span-12{grid-column:span 12}
+
     .list{
-      margin:10px 0 0;
-      padding:0;
-      list-style:none;
       display:grid;
-      gap:10px;
-    }
-    .list li{
-      padding:12px;
-      border-radius: 16px;
-      background: rgba(0,0,0,.22);
-      border:1px solid rgba(255,255,255,.08);
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      font-size:13.5px;
-      color: rgba(255,255,255,.84);
-    }
-    .tick{
-      width:22px; height:22px;
-      border-radius: 10px;
-      background: rgba(255,102,196,.14);
-      border:1px solid rgba(255,102,196,.18);
-      box-shadow: 0 0 18px rgba(255,102,196,.16);
-      flex:0 0 auto;
-      display:grid;
-      place-items:center;
-      margin-top: 1px;
-      font-weight:950;
+      gap:12px;
+      margin-top:14px;
     }
 
-    footer{
-      margin-top:16px;
+    .item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:14px;
+      border-radius:18px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      transition:transform .16s ease, border-color .16s ease;
+    }
+    .item:hover{
+      transform:translateY(-3px);
+      border-color:rgba(123,234,255,.28);
+    }
+
+    .icon{
+      width:28px;
+      height:28px;
+      flex:0 0 28px;
+      display:grid;
+      place-items:center;
+      border-radius:10px;
+      background:linear-gradient(135deg, rgba(255,89,199,.18), rgba(123,234,255,.16));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:0 0 20px rgba(255,89,199,.08);
+    }
+
+    .item b{
+      display:block;
+      margin-bottom:3px;
+      font-size:14px;
+    }
+    .item span{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    /* Slot machine */
+    .slotWrap{
+      display:grid;
+      gap:16px;
+    }
+
+    .slotMachine{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:12px;
+    }
+
+    .reel{
+      height:96px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      font-size:42px;
+      font-weight:900;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03)),
+        linear-gradient(180deg, rgba(14,12,22,.9), rgba(8,8,14,.95));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.06),
+        0 16px 30px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .reel::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.10), transparent 28%, transparent 72%, rgba(255,255,255,.05));
+      pointer-events:none;
+    }
+
+    .slotControls{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .jackpot{
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(242,196,111,.08);
+      border:1px solid rgba(242,196,111,.16);
+      color:#ffe7b5;
+      font-weight:800;
+      min-height:52px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       text-align:center;
-      color: rgba(255,255,255,.55);
+    }
+
+    .footer{
+      margin-top:20px;
+      padding:18px;
+      text-align:center;
+      color:rgba(255,255,255,.54);
       font-size:12px;
-      padding: 10px 0;
+      letter-spacing:.08em;
+      text-transform:uppercase;
     }
 
     /* Modal */
     dialog{
+      width:min(940px, 94vw);
       border:none;
-      border-radius: 18px;
       padding:0;
-      width:min(980px, 94vw);
-      background: rgba(10,2,16,.92);
-      color: var(--ink);
-      box-shadow: 0 30px 95px rgba(0,0,0,.72);
-      border: 1px solid rgba(255,255,255,.14);
-      backdrop-filter: blur(10px);
+      border-radius:24px;
+      overflow:hidden;
+      background:linear-gradient(180deg, rgba(13,13,22,.94), rgba(16,15,28,.98));
+      color:var(--white);
+      box-shadow:var(--shadow-strong);
+      border:1px solid rgba(255,255,255,.10);
     }
     dialog::backdrop{
-      background: rgba(0,0,0,.62);
-      backdrop-filter: blur(6px);
+      background:rgba(0,0,0,.7);
+      backdrop-filter:blur(6px);
     }
+
     .modalHead{
       display:flex;
       justify-content:space-between;
       align-items:center;
       gap:12px;
-      padding: 14px 16px;
-      border-bottom: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+      padding:16px 18px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
     }
     .modalHead b{
-      text-transform: uppercase;
-      letter-spacing: .85px;
-      font-size: 13px;
-      color: rgba(255,255,255,.92);
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:#ffe5a7;
     }
-    .closeBtn{
+
+    .close{
       appearance:none;
       border:none;
-      background: rgba(0,0,0,.35);
-      border: 1px solid rgba(255,255,255,.12);
-      color: rgba(255,255,255,.92);
-      padding: 10px 12px;
-      border-radius: 12px;
       cursor:pointer;
-      font-weight: 950;
-    }
-    .modalBody{ padding: 14px 16px 16px; }
-    .hint{
-      margin:0 0 10px;
-      color: rgba(255,255,255,.70);
-      font-size: 13px;
-      line-height:1.5;
-    }
-    .docFrame{
-      border-radius: 16px;
-      overflow:hidden;
+      padding:11px 14px;
+      border-radius:12px;
+      color:var(--white);
+      background:rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.30);
-      max-height: 72vh;
+      font-weight:900;
+    }
+
+    .modalBody{
+      padding:18px;
+    }
+
+    .hint{
+      margin:0 0 14px;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:14px;
+    }
+
+    .docFrame{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:#08080e;
+      max-height:70vh;
       overflow:auto;
     }
+
     .docFrame img{
       display:block;
-      width: 100%;
-      height: auto;
+      width:100%;
+      height:auto;
     }
 
     .copyBox{
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      padding:16px;
+    }
+
+    code{
+      display:block;
+      white-space:pre-wrap;
+      word-break:break-word;
+      color:#f5eed7;
+      font-size:13px;
+      line-height:1.7;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    }
+
+    .modalActions{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      background: rgba(0,0,0,.28);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius: 16px;
-      padding: 12px;
+      margin-top:14px;
     }
-    code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      font-size: 12.5px;
-      color: rgba(255,255,255,.90);
-      word-break: break-word;
-      white-space: pre-wrap;
+
+    @media (max-width: 1050px){
+      .heroInner{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2, 1fr)}
+      .span-7,.span-5,.span-4,.span-8{grid-column:span 12}
+    }
+
+    @media (max-width: 640px){
+      .wrap{width:min(95vw, 95vw)}
+      .topbar{flex-direction:column;align-items:flex-start}
+      .heroInner{padding:22px}
+      .panel,.profileCard{padding:18px}
+      .stats{grid-template-columns:1fr}
+      .hero h2{max-width:100%}
+      .slotMachine{grid-template-columns:1fr 1fr 1fr}
     }
   </style>
 </head>
-
 <body>
+  <div class="lights" aria-hidden="true">
+    <div class="beam b1"></div>
+    <div class="beam b2"></div>
+    <div class="beam b3"></div>
+  </div>
+
   <div class="sparkles" id="sparkles" aria-hidden="true"></div>
 
   <main class="wrap">
-    <div class="top">
+    <header class="topbar">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
           <h1>Diamond Casino &amp; Resort</h1>
-          <p>Bewerbung – Security</p>
+          <p>Bewerbung – Premium Security / High Roller Service</p>
         </div>
       </div>
 
-      <div class="pill" title="Leitwerte">
-        <span class="dot" aria-hidden="true"></span>
-        Loyalität · Diskretion · Respekt
+      <div class="status">
+        <span class="statusDot"></span>
+        Elegant · Loyal · Diskret · Belastbar
       </div>
-    </div>
+    </header>
 
-    <section class="hero" aria-label="Bewerbung">
-      <div class="banner" aria-hidden="true"></div>
+    <section class="hero">
+      <div class="heroBanner"></div>
+      <div class="heroGlow"></div>
 
       <div class="heroInner">
         <div>
-          <h2 class="title">Schriftliche Bewerbung als Security</h2>
-          <p class="subtitle">
-            Sehr geehrtes Team des Diamond Casino &amp; Resort,<br/>
-            hiermit bewerbe ich mich um die Stelle als <b>Security</b>. Mein Fokus liegt auf ruhiger Präsenz,
-            Deeskalation und einem professionellen Umgang mit Gästen und Mitarbeitenden – auch bei hohem Andrang.
+          <div class="eyebrow">♦ GTA V Online Inspired Casino Application</div>
+          <h2>
+            Bewerbung für das
+            <span class="accent">Diamond Casino</span>
+          </h2>
+
+          <p class="lead">
+            Sehr geehrtes Team des Diamond Casino &amp; Resort,<br>
+            hiermit bewerbe ich mich mit vollem Einsatz, professionellem Auftreten und einem klaren Fokus auf
+            Sicherheit, Diskretion und Präsenz. Mein Ziel ist es, die luxuriöse Atmosphäre des Hauses aktiv zu schützen
+            und Gästen wie Mitarbeitenden jederzeit ein sicheres Gefühl zu geben.
           </p>
 
-          <div class="chips" aria-label="Kurzinfos">
-            <div class="chip"><span class="ic">♦</span> <b>Name:</b> Jeff Jeremain</div>
-            <div class="chip"><span class="ic">🆔</span> <b>Alter (IC):</b> 36 Jahre</div>
-            <div class="chip"><span class="ic">🌐</span> <b>Alter (OOC):</b> 19 Jahre</div>
-            <div class="chip"><span class="ic">☎</span> <b>Handynummer:</b> 6029103965</div>
+          <div class="heroButtons">
+            <button class="btn primary" id="btnOpenTicket">Bewerbung ansehen</button>
+            <button class="btn secondary" id="scrollDocs">Dokumente öffnen</button>
+            <button class="btn ghost" id="scrollSlot">Casino Feature testen</button>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <small>Name</small>
+              <b>Jeff Adil Cüneyt Rince</b>
+            </div>
+            <div class="stat">
+              <small>Alter IC</small>
+              <b>36 Jahre</b>
+            </div>
+            <div class="stat">
+              <small>Alter OOC</small>
+              <b>19 Jahre</b>
+            </div>
+            <div class="stat">
+              <small>Kontakt</small>
+              <b>6029103965</b>
+            </div>
           </div>
         </div>
 
-        <aside class="card">
-          <h3>Dokumente &amp; Ticket</h3>
+        <aside class="profileCard">
+          <div class="profileInner">
+            <div class="vip">★ High Roller Candidate</div>
+            <h3 class="profileName">Jeff Adil Cüneyt Rince</h3>
 
-          <div class="kv">
-            <div class="row"><span>Position</span><b>Security</b></div>
-            <div class="row"><span>Auftreten</span><b>Respektvoll &amp; Kontrolliert</b></div>
-            <div class="row"><span>Diskretion</span><b>Selbstverständlich</b></div>
-          </div>
+            <div class="kv">
+              <div class="row"><span>Position</span><b>Security</b></div>
+              <div class="row"><span>Auftreten</span><b>Kontrolliert &amp; Souverän</b></div>
+              <div class="row"><span>Priorität</span><b>Schutz, Ordnung, Diskretion</b></div>
+              <div class="row"><span>Verfügbarkeit</span><b>Flexibel nach Absprache</b></div>
+            </div>
 
-          <div class="actions">
-            <button class="btn primary" id="btnPerso" type="button">🪪 Personalausweis</button>
-            <button class="btn primary" id="btnGutachten" type="button">🧠 Psych. Gutachten</button>
-            <button class="btn primary" id="btnWaffe" type="button">🔫 Waffenschein</button>
-
-            <button class="btn secondary" id="btnCopy" type="button">🧾 Ticket-Text kopieren</button>
-            <button class="btn secondary" id="btnPreview" type="button">👁 Ticket-Vorschau</button>
+            <div class="docs" id="docs">
+              <button class="docBtn" id="btnPerso" type="button">
+                <span>🪪 Personalausweis</span>
+                <span>Öffnen ↗</span>
+              </button>
+              <button class="docBtn" id="btnGutachten" type="button">
+                <span>🧠 Psychologisches Gutachten</span>
+                <span>Öffnen ↗</span>
+              </button>
+              <button class="docBtn" id="btnWaffe" type="button">
+                <span>🔫 Waffenschein</span>
+                <span>Öffnen ↗</span>
+              </button>
+            </div>
           </div>
         </aside>
       </div>
     </section>
 
-    <section class="grid" aria-label="Inhalte">
-      <article class="card">
-        <h3>Warum ich im Casino arbeiten möchte</h3>
-        <p class="text">
-          Das Casino ist ein Ort mit hoher Frequenz und klaren Standards. Ich möchte dazu beitragen,
-          dass Gäste eine sichere, hochwertige Atmosphäre erleben – durch Präsenz, frühes Erkennen von Risiken
-          und konsequentes, aber verhältnismäßiges Handeln.
+    <section class="grid">
+      <article class="panel span-7">
+        <h3>Warum ich perfekt ins Casino passe</h3>
+        <p>
+          Das Diamond Casino steht für Klasse, Exklusivität und Kontrolle. Genau diese Werte möchte ich mit meiner
+          Arbeitsweise vertreten. Ich bleibe ruhig, handle überlegt, erkenne Spannungen frühzeitig und sorge dafür,
+          dass Probleme gelöst werden, bevor sie die Atmosphäre des Hauses stören. In einem Ort mit hohem Andrang,
+          wertvollen Gästen und repräsentativem Anspruch ist professionelle Security kein Extra – sondern Pflicht.
         </p>
-        <ul class="list">
-          <li><span class="tick">✓</span> Deeskalation statt Eskalation – Ruhe bewahren &amp; sauber kommunizieren</li>
-          <li><span class="tick">✓</span> Prävention: Situationen lesen, bevor sie kritisch werden</li>
-          <li><span class="tick">✓</span> Diskretion: keine unnötige Aufmerksamkeit, klare Abläufe intern</li>
-        </ul>
-      </article>
 
-      <article class="card">
-        <h3>Stärken &amp; Vorgehensweise</h3>
-        <ul class="list">
-          <li><span class="tick">✓</span> Stressresistent, fokussiert bei Event-/Peak-Zeiten</li>
-          <li><span class="tick">✓</span> Kontrolliertes Einschreiten, Verhältnismäßigkeit im Vordergrund</li>
-          <li><span class="tick">✓</span> Teamarbeit &amp; Funkdisziplin, saubere Übergaben</li>
-          <li><span class="tick">✓</span> Situationsbewusstsein: Ein-/Ausgänge, Engstellen, Crowd-Flow</li>
-        </ul>
-        <p class="text" style="margin-top:12px;">
-          Priorität: <b>Gäste schützen</b>, <b>Personal entlasten</b>, <b>Eigentum sichern</b> – professionell und unauffällig.
-        </p>
-      </article>
-
-      <article class="card">
-        <h3>Verfügbarkeit / Online-Zeiten</h3>
-        <p class="text">
-          Ich bin flexibel einsetzbar und kann nach Absprache Schichten übernehmen – besonders bei hohem Gästeaufkommen
-          oder besonderen Veranstaltungen.
-        </p>
-        <ul class="list">
-          <li><span class="tick">✓</span> Kurzfristig einsatzbereit nach Rücksprache</li>
-          <li><span class="tick">✓</span> Fokus auf Events/Peak-Zeiten</li>
-          <li><span class="tick">✓</span> Briefings/Protokolle für saubere Übergaben</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <h3>Kontakt &amp; Abschluss</h3>
-        <p class="text">
-          Ich freue mich über eine Rückmeldung und ein kurzes Gespräch/Probeschicht, um mich im Team vorzustellen.
-          Vielen Dank für Ihre Zeit.
-        </p>
-        <div class="kv" style="margin-top:12px;">
-          <div class="row"><span>Name</span><b>Jeff Jeremain</b></div>
-          <div class="row"><span>Handynummer</span><b>6029103965</b></div>
-          <div class="row"><span>Bewerbung</span><b>Diamond Casino &amp; Resort – Security</b></div>
+        <div class="list">
+          <div class="item">
+            <div class="icon">♦</div>
+            <div>
+              <b>Diskretion auf VIP-Niveau</b>
+              <span>Unauffälliges, aber wachsames Auftreten ohne unnötige Eskalation.</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="icon">✓</div>
+            <div>
+              <b>Deeskalation vor Konfrontation</b>
+              <span>Situationen lesen, Kontrolle bewahren und professionell handeln.</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="icon">★</div>
+            <div>
+              <b>Luxus braucht Sicherheit</b>
+              <span>Ein hochwertiges Casino-Erlebnis kann nur mit Struktur und Schutz funktionieren.</span>
+            </div>
+          </div>
         </div>
+      </article>
+
+      <article class="panel span-5">
+        <h3>Stärken &amp; Arbeitsweise</h3>
+        <div class="list">
+          <div class="item">
+            <div class="icon">⚡</div>
+            <div>
+              <b>Stressresistent</b>
+              <span>Auch bei voller Lobby, Events oder kritischen Momenten ruhig und präzise.</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="icon">🎧</div>
+            <div>
+              <b>Team- &amp; Funkdisziplin</b>
+              <span>Klare Kommunikation, saubere Übergaben, koordinierte Abläufe.</span>
+            </div>
+          </div>
+          <div class="item">
+            <div class="icon">🛡</div>
+            <div>
+              <b>Prävention statt Chaos</b>
+              <span>Früh erkennen, richtig reagieren, Sicherheit halten.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel span-4">
+        <h3>Online-Zeiten</h3>
+        <p>
+          Ich bin flexibel einsetzbar und kann nach Rücksprache insbesondere zu Stoßzeiten, Events und besonderen
+          Casino-Abenden unterstützen. Genau dort, wo Präsenz am wichtigsten ist, möchte ich zuverlässig da sein.
+        </p>
+      </article>
+
+      <article class="panel span-8" id="slotSection">
+        <h3>Interaktives Casino Feature</h3>
+        <div class="slotWrap">
+          <p>
+            Kleine Demo im Casino-Stil: Starte die Slot-Machine und prüfe dein Glück. Das bringt Leben in die Seite und
+            passt perfekt zum Diamond-Casino-Thema.
+          </p>
+
+          <div class="slotMachine" aria-label="Slot Machine">
+            <div class="reel" id="reel1">♦</div>
+            <div class="reel" id="reel2">7</div>
+            <div class="reel" id="reel3">★</div>
+          </div>
+
+          <div class="slotControls">
+            <button class="btn primary" id="spinBtn">Spin</button>
+            <button class="btn secondary" id="autoSpinBtn">Auto Spin x3</button>
+          </div>
+
+          <div class="jackpot" id="jackpotText">Willkommen im Diamond Casino – drücke auf Spin.</div>
+        </div>
+      </article>
+
+      <article class="panel span-12">
+        <h3>Kontakt &amp; Abschluss</h3>
+        <p>
+          Ich freue mich über eine Rückmeldung und die Möglichkeit, mich in einem Gespräch oder einer Probeschicht
+          persönlich zu beweisen. Vielen Dank für Ihre Zeit und die Prüfung meiner Bewerbung. Ich bin bereit, das
+          Diamond Casino mit Loyalität, Präsenz und Professionalität zu vertreten.
+        </p>
       </article>
     </section>
 
-    <footer>
-      ♦ Diamond Casino &amp; Resort – Bewerbung (GitHub Pages) · Jeff Jeremain
-    </footer>
+    <div class="footer">
+      ♦ Diamond Casino &amp; Resort – Bewerbung von Jeff Adil Cüneyt Rince
+    </div>
   </main>
 
-  <!-- Dokument-Modal -->
+  <!-- Dokument Modal -->
   <dialog id="docModal">
     <div class="modalHead">
       <b id="docTitle">Dokument</b>
-      <button class="closeBtn" id="docClose" type="button">Schließen</button>
+      <button class="close" id="docClose" type="button">Schließen</button>
     </div>
     <div class="modalBody">
-      <p class="hint" id="docHint">Dokumentansicht (Scroll im Fenster, Zoom im Browser möglich).</p>
+      <p class="hint" id="docHint">Dokumentansicht.</p>
       <div class="docFrame">
         <img id="docImg" alt="Dokument" />
       </div>
-      <div class="actions" style="margin-top:12px;">
-        <button class="btn secondary small" id="btnOpenNewTab" type="button">↗ In neuem Tab öffnen</button>
-        <a class="btn secondary small" id="btnDownload" href="#" download>⬇ Download</a>
+      <div class="modalActions">
+        <button class="btn secondary" id="btnOpenNewTab" type="button">In neuem Tab öffnen</button>
+        <a class="btn ghost" id="btnDownload" href="#" download>Datei herunterladen</a>
       </div>
     </div>
   </dialog>
 
-  <!-- Ticket-Modal -->
+  <!-- Ticket Modal -->
   <dialog id="ticketModal">
     <div class="modalHead">
-      <b>Ticket-Vorschau</b>
-      <button class="closeBtn" id="btnCloseTicket" type="button">Schließen</button>
+      <b>Bewerbungs-Vorschau</b>
+      <button class="close" id="ticketClose" type="button">Schließen</button>
     </div>
     <div class="modalBody">
       <p class="hint">
-        Diesen Text kannst du 1:1 in dein Ticket kopieren (ggf. Online-Zeiten ergänzen).
+        Diesen Text kannst du direkt als Ticket oder Bewerbungstext verwenden.
       </p>
       <div class="copyBox">
         <code id="ticketText"></code>
-        <button class="btn secondary small" id="btnCopy2" type="button">Kopieren</button>
+      </div>
+      <div class="modalActions">
+        <button class="btn primary" id="btnCopy">Text kopieren</button>
       </div>
     </div>
   </dialog>
 
   <script>
-    // Dateinamen im Repo (anpassen, falls nötig)
     const FILES = {
       perso: "perso.png",
       gutachten: "gutachten.png",
-      waffenschein: "waffenschein.png",
+      waffenschein: "waffenschein.png"
     };
 
-    // Sparkles
-    const host = document.getElementById("sparkles");
-    const rand = (min,max)=> Math.random()*(max-min)+min;
-    for(let i=0;i<22;i++){
+    /* Sparkles */
+    const sparkHost = document.getElementById("sparkles");
+    const rand = (min, max) => Math.random() * (max - min) + min;
+
+    for(let i = 0; i < 28; i++){
       const s = document.createElement("div");
       s.className = "spark";
-      s.style.left = rand(0,100) + "vw";
-      s.style.top = rand(62,112) + "vh";
-      s.style.animationDuration = rand(7.0, 11.0) + "s";
-      s.style.animationDelay = rand(0, 7.5) + "s";
-      const size = rand(4, 9);
+      const size = rand(3, 8);
       s.style.width = size + "px";
       s.style.height = size + "px";
-      host.appendChild(s);
+      s.style.left = rand(0, 100) + "vw";
+      s.style.top = rand(65, 110) + "vh";
+      s.style.animationDuration = rand(7, 13) + "s";
+      s.style.animationDelay = rand(0, 7) + "s";
+      sparkHost.appendChild(s);
     }
 
-    // Ticket-Text
-    const ticket =
-`💎 Diamond Casino & Resort – Bewerbung (Security)
+    /* Ticket text */
+    const ticket = `💎 Diamond Casino & Resort – Bewerbung
 
-Name / Ingame-Name: Jeff Jeremain
+Name / Ingame-Name: Jeff Adil Cüneyt Rince
 Alter (IC): 36 Jahre
 Alter (OOC): 19 Jahre
 Handynummer: 6029103965
 Position: Security
 
-Warum möchte ich bei euch arbeiten?
-- Ruhige Präsenz, professionelles Auftreten, saubere Kommunikation
-- Prävention & Deeskalation, ohne die Casino-Atmosphäre zu stören
-- Diskretion und Loyalität gegenüber dem Haus und dem Team
+Warum möchte ich im Diamond Casino arbeiten?
+- Ich möchte Teil eines exklusiven und professionellen Hauses sein
+- Mir ist wichtig, dass Gäste und Mitarbeitende sich sicher fühlen
+- Ich arbeite ruhig, diskret und mit einem klaren Blick für kritische Situationen
+- Ich möchte die luxuriöse Atmosphäre des Casinos aktiv schützen und erhalten
 
-Stärken & Vorgehensweise:
-- Stressresistent, klar in der Situation, verhältnismäßiges Einschreiten
-- Teamarbeit & Funkdisziplin, saubere Übergaben
-- Fokus: Schutz der Gäste, Entlastung der Mitarbeitenden, Sicherung des Eigentums
+Stärken:
+- Stressresistent und belastbar
+- Deeskalierendes und professionelles Handeln
+- Teamfähig und kommunikativ
+- Prävention statt unnötiger Eskalation
+- Präsenz, Loyalität und Verantwortungsbewusstsein
 
-Online-Zeiten / Verfügbarkeit:
-- Flexibel nach Absprache (Event-/Peak-Zeiten bevorzugt)
+Verfügbarkeit:
+- Flexibel nach Absprache
+- Besonders einsetzbar bei Events, Peak-Zeiten und hohem Gästeaufkommen
 
 Dokumente:
-- Personalausweis (Website Button)
-- Medizinisch-Psychologisches Gutachten (Website Button)
-- Waffenschein (Website Button)`;
+- Personalausweis
+- Psychologisches Gutachten
+- Waffenschein
 
-    // Copy helper
+Mit freundlichen Grüßen
+Jeff Adil Cüneyt Rince`;
+
+    document.getElementById("ticketText").textContent = ticket;
+
     async function copyToClipboard(text){
       try{
         await navigator.clipboard.writeText(text);
         return true;
-      }catch(e){
+      }catch{
         const ta = document.createElement("textarea");
         ta.value = text;
         document.body.appendChild(ta);
@@ -715,80 +1076,152 @@ Dokumente:
       }
     }
 
-    // Dokument-Modal
+    /* Smooth scroll buttons */
+    document.getElementById("scrollDocs").addEventListener("click", () => {
+      document.getElementById("docs").scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    document.getElementById("scrollSlot").addEventListener("click", () => {
+      document.getElementById("slotSection").scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    /* Doc modal */
     const docModal = document.getElementById("docModal");
     const docImg = document.getElementById("docImg");
     const docTitle = document.getElementById("docTitle");
     const docHint = document.getElementById("docHint");
     const btnOpenNewTab = document.getElementById("btnOpenNewTab");
     const btnDownload = document.getElementById("btnDownload");
-
-    let currentDocFile = null;
+    let currentDoc = null;
 
     function openDoc(title, file){
-      currentDocFile = file;
+      currentDoc = file;
       docTitle.textContent = title;
-      docHint.textContent = "Datei: " + file + " (Scroll im Fenster, Zoom im Browser möglich)";
+      docHint.textContent = `Datei: ${file}`;
       docImg.src = file;
       docImg.alt = title;
-
       btnDownload.href = file;
       btnDownload.setAttribute("download", file);
 
-      if (typeof docModal.showModal === "function") docModal.showModal();
-      else window.open(file, "_blank", "noopener,noreferrer");
+      if(typeof docModal.showModal === "function"){
+        docModal.showModal();
+      }else{
+        window.open(file, "_blank", "noopener,noreferrer");
+      }
     }
+
+    document.getElementById("btnPerso").addEventListener("click", () => openDoc("Personalausweis", FILES.perso));
+    document.getElementById("btnGutachten").addEventListener("click", () => openDoc("Psychologisches Gutachten", FILES.gutachten));
+    document.getElementById("btnWaffe").addEventListener("click", () => openDoc("Waffenschein", FILES.waffenschein));
 
     document.getElementById("docClose").addEventListener("click", () => docModal.close());
     btnOpenNewTab.addEventListener("click", () => {
-      if(currentDocFile) window.open(currentDocFile, "_blank", "noopener,noreferrer");
+      if(currentDoc) window.open(currentDoc, "_blank", "noopener,noreferrer");
     });
 
     docModal.addEventListener("click", (e) => {
       const rect = docModal.getBoundingClientRect();
-      const inside =
-        rect.top <= e.clientY && e.clientY <= rect.bottom &&
-        rect.left <= e.clientX && e.clientX <= rect.right;
+      const inside = rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientX && e.clientX <= rect.right;
       if(!inside) docModal.close();
     });
 
-    // Dokument Buttons
-    document.getElementById("btnPerso").addEventListener("click", () => openDoc("Personalausweis", FILES.perso));
-    document.getElementById("btnGutachten").addEventListener("click", () => openDoc("Medizinisch-Psychologisches Gutachten", FILES.gutachten));
-    document.getElementById("btnWaffe").addEventListener("click", () => openDoc("Waffenschein", FILES.waffenschein));
-
-    // Ticket modal
+    /* Ticket modal */
     const ticketModal = document.getElementById("ticketModal");
-    document.getElementById("ticketText").textContent = ticket;
-
-    document.getElementById("btnPreview").addEventListener("click", () => {
-      if(typeof ticketModal.showModal === "function") ticketModal.showModal();
-      else alert(ticket);
+    document.getElementById("btnOpenTicket").addEventListener("click", () => {
+      if(typeof ticketModal.showModal === "function"){
+        ticketModal.showModal();
+      }else{
+        alert(ticket);
+      }
     });
+    document.getElementById("ticketClose").addEventListener("click", () => ticketModal.close());
 
-    document.getElementById("btnCloseTicket").addEventListener("click", () => ticketModal.close());
-    ticketModal.addEventListener("click", (e) => {
-      const rect = ticketModal.getBoundingClientRect();
-      const inside =
-        rect.top <= e.clientY && e.clientY <= rect.bottom &&
-        rect.left <= e.clientX && e.clientY <= rect.bottom;
-      // (kleiner Schutz, aber reicht)
-      if(!inside) ticketModal.close();
-    });
-
-    // Copy Buttons
     document.getElementById("btnCopy").addEventListener("click", async (e) => {
       const btn = e.currentTarget;
       const ok = await copyToClipboard(ticket);
-      btn.textContent = ok ? "✅ Kopiert!" : "⚠️ Konnte nicht kopieren";
-      setTimeout(()=> btn.textContent="🧾 Ticket-Text kopieren", 1300);
+      btn.textContent = ok ? "✅ Kopiert!" : "⚠️ Fehler beim Kopieren";
+      setTimeout(() => btn.textContent = "Text kopieren", 1400);
     });
 
-    document.getElementById("btnCopy2").addEventListener("click", async (e) => {
-      const btn = e.currentTarget;
-      const ok = await copyToClipboard(ticket);
-      btn.textContent = ok ? "✅ Kopiert!" : "⚠️ Fehler";
-      setTimeout(()=> btn.textContent="Kopieren", 1300);
+    ticketModal.addEventListener("click", (e) => {
+      const rect = ticketModal.getBoundingClientRect();
+      const inside = rect.top <= e.clientY && e.clientY <= rect.bottom && rect.left <= e.clientX && e.clientX <= rect.right;
+      if(!inside) ticketModal.close();
+    });
+
+    /* Slot machine */
+    const icons = ["♦", "7", "★", "♣", "♥", "💎"];
+    const reel1 = document.getElementById("reel1");
+    const reel2 = document.getElementById("reel2");
+    const reel3 = document.getElementById("reel3");
+    const spinBtn = document.getElementById("spinBtn");
+    const autoSpinBtn = document.getElementById("autoSpinBtn");
+    const jackpotText = document.getElementById("jackpotText");
+
+    function randomIcon(){
+      return icons[Math.floor(Math.random() * icons.length)];
+    }
+
+    function animateReel(el, duration = 900){
+      return new Promise(resolve => {
+        const start = performance.now();
+        function frame(now){
+          el.textContent = randomIcon();
+          if(now - start < duration){
+            requestAnimationFrame(frame);
+          }else{
+            resolve();
+          }
+        }
+        requestAnimationFrame(frame);
+      });
+    }
+
+    async function spinSlots(){
+      spinBtn.disabled = true;
+      autoSpinBtn.disabled = true;
+      jackpotText.textContent = "Die Rollen drehen sich ...";
+
+      await Promise.all([
+        animateReel(reel1, 850),
+        animateReel(reel2, 1200),
+        animateReel(reel3, 1550)
+      ]);
+
+      const a = reel1.textContent;
+      const b = reel2.textContent;
+      const c = reel3.textContent;
+
+      if(a === b && b === c){
+        jackpotText.textContent = "🎉 JACKPOT! Perfekter Treffer – High Roller Glück!";
+      }else if(a === b || b === c || a === c){
+        jackpotText.textContent = "✨ Stark! Zwei Symbole passen – fast ein Jackpot.";
+      }else{
+        jackpotText.textContent = "♠ Kein Treffer – probier dein Glück erneut.";
+      }
+
+      spinBtn.disabled = false;
+      autoSpinBtn.disabled = false;
+    }
+
+    spinBtn.addEventListener("click", spinSlots);
+
+    autoSpinBtn.addEventListener("click", async () => {
+      spinBtn.disabled = true;
+      autoSpinBtn.disabled = true;
+      for(let i = 0; i < 3; i++){
+        await spinSlots();
+        await new Promise(r => setTimeout(r, 450));
+      }
+      spinBtn.disabled = false;
+      autoSpinBtn.disabled = false;
+    });
+
+    /* Slight parallax */
+    document.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 10;
+      const y = (e.clientY / window.innerHeight - 0.5) * 10;
+      document.querySelector(".heroBanner").style.transform = `scale(1.05) translate(${x * 0.5}px, ${y * 0.5}px)`;
     });
   </script>
 </body>
