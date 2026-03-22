@@ -7,6 +7,123 @@
   <meta name="description" content="Premium GTA 5 Diamond Casino inspirierte Bewerbungsseite mit Animationen, Minigames und Luxuslook." />
   <style>
     :root{
+      --lux-gold:#f4c86a;
+      --lux-gold-soft:#ffe4a3;
+      --lux-black:#050507;
+      --chip-red:#c11f39;
+      --chip-blue:#295bff;
+      --chip-green:#139a6b;
+    }
+
+    *{cursor:none !important;}
+
+    .cursorDot,
+    .cursorRing{
+      position:fixed;
+      left:0;
+      top:0;
+      pointer-events:none;
+      z-index:5000;
+      border-radius:999px;
+      transform:translate(-50%, -50%);
+      mix-blend-mode:screen;
+    }
+    .cursorDot{
+      width:10px;
+      height:10px;
+      background:radial-gradient(circle, #fff7d3, var(--lux-gold));
+      box-shadow:0 0 18px rgba(244,200,106,.8);
+    }
+    .cursorRing{
+      width:34px;
+      height:34px;
+      border:1px solid rgba(244,200,106,.65);
+      box-shadow:0 0 24px rgba(244,200,106,.22), inset 0 0 14px rgba(244,200,106,.08);
+      transition:width .18s ease,height .18s ease,border-color .18s ease,box-shadow .18s ease;
+    }
+    .cursorRing.hover{
+      width:54px;
+      height:54px;
+      border-color:rgba(255,228,163,.95);
+      box-shadow:0 0 34px rgba(244,200,106,.35), inset 0 0 20px rgba(244,200,106,.12);
+    }
+
+    .chipFloatLayer{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:5;
+      overflow:hidden;
+    }
+    .chipFloat{
+      position:absolute;
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      border:4px dashed rgba(255,255,255,.25);
+      box-shadow:0 12px 28px rgba(0,0,0,.28), 0 0 22px rgba(244,200,106,.12);
+      opacity:.26;
+      animation:chipHover linear infinite;
+    }
+    .chipFloat::before,
+    .chipFloat::after{
+      content:'';
+      position:absolute;
+      inset:7px;
+      border-radius:50%;
+      border:2px solid rgba(255,255,255,.18);
+    }
+    .chipFloat::after{
+      inset:18px;
+      border-width:3px;
+      border-color:rgba(255,255,255,.28);
+    }
+    .chipFloat.red{background:radial-gradient(circle at 30% 30%, #ff94aa, var(--chip-red));}
+    .chipFloat.blue{background:radial-gradient(circle at 30% 30%, #9cb8ff, var(--chip-blue));}
+    .chipFloat.green{background:radial-gradient(circle at 30% 30%, #7bf7cb, var(--chip-green));}
+    .chipFloat.gold{background:radial-gradient(circle at 30% 30%, #fff1c6, #b8861d);}
+    @keyframes chipHover{
+      0%{transform:translateY(10vh) rotate(0deg) scale(.8);opacity:0}
+      10%{opacity:.22}
+      50%{opacity:.3}
+      100%{transform:translateY(-115vh) rotate(540deg) scale(1.08);opacity:0}
+    }
+
+    .gold-black-mode .hero,
+    .gold-black-mode .panel,
+    .gold-black-mode .profileCard,
+    .gold-black-mode .navbar,
+    .gold-black-mode .loadingBox,
+    .gold-black-mode dialog{
+      box-shadow:0 24px 70px rgba(0,0,0,.55), 0 0 0 1px rgba(244,200,106,.06), 0 0 40px rgba(244,200,106,.06);
+    }
+
+    .preloaderLogoGlow{
+      position:absolute;
+      inset:-22%;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(244,200,106,.18), transparent 58%);
+      animation:pulseLogo 1.8s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes pulseLogo{
+      0%,100%{transform:scale(.9);opacity:.6}
+      50%{transform:scale(1.12);opacity:1}
+    }
+
+    .luxuryToggle{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      color:#1b1304;
+      background:linear-gradient(135deg, var(--lux-gold-soft), var(--lux-gold));
+      font-weight:900;
+      padding:12px 14px;
+      border-radius:999px;
+      box-shadow:0 10px 24px rgba(244,200,106,.2);
+    }
+
+    :root{
       --bg:#05060b;
       --bg2:#0a0d17;
       --bg3:#101323;
@@ -515,10 +632,14 @@
 
   <div class="sparkles" id="sparkles" aria-hidden="true"></div>
   <div class="coins" id="coins" aria-hidden="true"></div>
+  <div class="chipFloatLayer" id="chipFloatLayer" aria-hidden="true"></div>
+  <div class="cursorRing" id="cursorRing"></div>
+  <div class="cursorDot" id="cursorDot"></div>
 
   <div class="loading" id="loadingScreen" aria-live="polite">
     <div class="loadingBox">
       <div class="loadingInner">
+        <div class="preloaderLogoGlow"></div>
         <div class="loadLogo">♦</div>
         <h1>Diamond Casino</h1>
         <p>Luxus. Klasse. Kontrolle. Die Premium-Bewerbung wird geladen …</p>
@@ -556,6 +677,7 @@
         <a href="#contact">Kontakt</a>
         <button id="openTicketBtn" type="button">Ticket</button>
         <button id="soundBtn" class="soundBtn" type="button">🔇 Musik</button>
+        <button id="luxuryModeBtn" class="luxuryToggle" type="button">Gold Black</button>
       </div>
     </nav>
 
@@ -806,7 +928,55 @@
 
     document.getElementById('ticketText').textContent = ticket;
 
+    document.body.classList.add('gold-black-mode');
     const rand = (min, max) => Math.random() * (max - min) + min;
+
+    // custom cursor
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorRing = document.getElementById('cursorRing');
+    let cursorX = window.innerWidth / 2, cursorY = window.innerHeight / 2;
+    let ringX = cursorX, ringY = cursorY;
+    window.addEventListener('mousemove', (e) => {
+      cursorX = e.clientX;
+      cursorY = e.clientY;
+      cursorDot.style.left = cursorX + 'px';
+      cursorDot.style.top = cursorY + 'px';
+    });
+    function animateCursor(){
+      ringX += (cursorX - ringX) * 0.18;
+      ringY += (cursorY - ringY) * 0.18;
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+    document.querySelectorAll('a, button, input, textarea, .playCard, .docBtn').forEach(el => {
+      el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+    });
+
+    // floating casino chips
+    const chipLayer = document.getElementById('chipFloatLayer');
+    const chipColors = ['red','blue','green','gold'];
+    for(let i = 0; i < 12; i++){
+      const chip = document.createElement('div');
+      chip.className = `chipFloat ${chipColors[i % chipColors.length]}`;
+      chip.style.left = rand(0, 100) + 'vw';
+      chip.style.top = rand(70, 120) + 'vh';
+      chip.style.animationDuration = rand(10, 20) + 's';
+      chip.style.animationDelay = rand(0, 12) + 's';
+      chip.style.transform = `scale(${rand(.75, 1.25)})`;
+      chipLayer.appendChild(chip);
+    }
+
+    // luxury theme toggle
+    const luxuryModeBtn = document.getElementById('luxuryModeBtn');
+    if(luxuryModeBtn){
+      luxuryModeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('gold-black-mode');
+        luxuryModeBtn.textContent = document.body.classList.contains('gold-black-mode') ? 'Gold Black' : 'Classic Neon';
+      });
+    }
 
     // sparkle generation
     const sparkHost = document.getElementById('sparkles');
